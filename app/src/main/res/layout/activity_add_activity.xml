@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:background="?colorPrimary">
+
+	<androidx.core.widget.NestedScrollView
+		android:layout_width="match_parent"
+		android:layout_height="0dp"
+		android:clipToPadding="false"
+		android:paddingTop="@dimen/top_bar_padding"
+		android:paddingBottom="@dimen/bottom_padding"
+		app:layout_constraintBottom_toBottomOf="parent"
+		app:layout_constraintTop_toTopOf="parent">
+
+		<androidx.appcompat.widget.LinearLayoutCompat
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:orientation="vertical"
+			android:paddingHorizontal="@dimen/default_padding"
+			app:divider="@drawable/divider_vertical_20dp"
+			app:showDividers="middle">
+
+			<androidx.appcompat.widget.LinearLayoutCompat
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:orientation="vertical"
+				app:divider="@drawable/divider_vertical_10dp"
+				app:showDividers="middle">
+
+				<androidx.appcompat.widget.AppCompatImageView
+					android:id="@+id/imageIcon"
+					android:layout_width="128dp"
+					android:layout_height="128dp"
+					android:layout_gravity="center_horizontal"
+					android:background="@drawable/background_rounded"
+					android:backgroundTint="@color/orange"
+					android:clickable="true"
+					android:focusable="true"
+					android:foreground="?selectableItemBackground"
+					android:padding="32dp"
+					android:scaleType="centerCrop"
+					android:src="@drawable/ic_home"
+					android:textColor="?android:textColorPrimary"
+					android:textColorHint="?colorSecondaryVariant" />
+
+				<androidx.appcompat.widget.AppCompatTextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_gravity="center_horizontal"
+					android:text="@string/tap_to_change_icon_and_color"
+					android:textColor="?android:textColorSecondary"
+					android:textSize="12sp" />
+
+			</androidx.appcompat.widget.LinearLayoutCompat>
+
+			<androidx.appcompat.widget.LinearLayoutCompat
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:orientation="vertical"
+				app:divider="@drawable/divider_vertical_10dp"
+				app:showDividers="middle">
+
+				<androidx.appcompat.widget.AppCompatTextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:text="@string/name_of_the_activity"
+					android:textColor="?android:textColorSecondary"
+					android:textSize="12sp" />
+
+				<androidx.appcompat.widget.AppCompatEditText
+					android:id="@+id/inputName"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:background="@drawable/background_stroke"
+					android:backgroundTint="?colorSecondaryVariant"
+					android:inputType="textCapWords|textAutoComplete|textAutoCorrect|textShortMessage"
+					android:padding="@dimen/default_padding"
+					android:textColor="?android:textColorPrimary"
+					android:textColorHint="?colorSecondaryVariant"
+					android:textCursorDrawable="@null"
+					tools:hint="Soccer" />
+
+				<androidx.appcompat.widget.AppCompatTextView
+					android:id="@+id/inputNameErrorLabel"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:text="@string/cannot_be_empty"
+					android:textColor="@color/red"
+					android:textSize="12sp"
+					android:visibility="gone" />
+
+			</androidx.appcompat.widget.LinearLayoutCompat>
+
+			<androidx.appcompat.widget.LinearLayoutCompat
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:gravity="center_vertical"
+				android:orientation="horizontal"
+				app:divider="@drawable/divider_horizontal_10dp"
+				app:showDividers="middle">
+
+				<androidx.appcompat.widget.AppCompatTextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_weight="1"
+					android:text="@string/weekday_availability"
+					android:textColor="?android:textColorSecondary"
+					android:textSize="12sp" />
+
+				<com.google.android.material.button.MaterialButton
+					android:id="@+id/buttonWeekdayAvailability"
+					style="@style/MaterialButton"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:paddingHorizontal="@dimen/default_padding"
+					android:paddingVertical="@dimen/small_padding"
+					android:paddingLeft="20dp"
+					android:paddingRight="20dp"
+					android:textColor="?android:textColorPrimary"
+					android:textColorHint="?colorSecondaryVariant"
+					app:cornerRadius="4dp"
+					app:strokeColor="?colorSecondaryVariant"
+					app:strokeWidth="1dp"
+					tools:text="mon - wed, fri - sun" />
+
+			</androidx.appcompat.widget.LinearLayoutCompat>
+
+			<androidx.appcompat.widget.LinearLayoutCompat
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:gravity="center_vertical"
+				android:orientation="horizontal"
+				app:divider="@drawable/divider_horizontal_10dp"
+				app:showDividers="middle">
+
+				<androidx.appcompat.widget.AppCompatTextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_weight="1"
+					android:text="@string/default_salary"
+					android:textColor="?android:textColorSecondary"
+					android:textSize="12sp" />
+
+				<com.google.android.material.button.MaterialButton
+					android:id="@+id/buttonSalary"
+					style="@style/MaterialButton"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:paddingHorizontal="@dimen/default_padding"
+					android:paddingVertical="@dimen/small_padding"
+					android:paddingLeft="20dp"
+					android:paddingRight="20dp"
+					android:textColor="?android:textColorPrimary"
+					android:textColorHint="?colorSecondaryVariant"
+					app:cornerRadius="4dp"
+					app:strokeColor="?colorSecondaryVariant"
+					app:strokeWidth="1dp"
+					tools:text="Ask me every time" />
+
+			</androidx.appcompat.widget.LinearLayoutCompat>
+
+			<androidx.appcompat.widget.LinearLayoutCompat
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:gravity="center_vertical"
+				android:orientation="horizontal"
+				app:divider="@drawable/divider_horizontal_10dp"
+				app:showDividers="middle">
+
+				<androidx.appcompat.widget.AppCompatTextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_weight="1"
+					android:text="@string/type_of_the_activity"
+					android:textColor="?android:textColorSecondary"
+					android:textSize="12sp" />
+
+				<com.google.android.material.button.MaterialButton
+					android:id="@+id/buttonType"
+					style="@style/MaterialButton"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:paddingHorizontal="@dimen/default_padding"
+					android:paddingVertical="@dimen/small_padding"
+					android:paddingLeft="20dp"
+					android:paddingRight="20dp"
+					android:textColor="?android:textColorPrimary"
+					android:textColorHint="?colorSecondaryVariant"
+					app:cornerRadius="4dp"
+					app:strokeColor="?colorSecondaryVariant"
+					app:strokeWidth="1dp"
+					tools:text="Period based" />
+
+			</androidx.appcompat.widget.LinearLayoutCompat>
+
+			<androidx.appcompat.widget.LinearLayoutCompat
+				android:id="@+id/containerPeriod"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:gravity="center_vertical"
+				android:orientation="horizontal"
+				app:divider="@drawable/divider_horizontal_10dp"
+				app:showDividers="middle">
+
+				<androidx.appcompat.widget.AppCompatTextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_weight="1"
+					android:text="@string/default_period"
+					android:textColor="?android:textColorSecondary"
+					android:textSize="12sp" />
+
+				<com.google.android.material.button.MaterialButton
+					android:id="@+id/buttonPeriod"
+					style="@style/MaterialButton"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:paddingHorizontal="@dimen/default_padding"
+					android:paddingVertical="@dimen/small_padding"
+					android:paddingLeft="20dp"
+					android:paddingRight="20dp"
+					android:textColor="?android:textColorPrimary"
+					android:textColorHint="?colorSecondaryVariant"
+					app:cornerRadius="4dp"
+					app:strokeColor="?colorSecondaryVariant"
+					app:strokeWidth="1dp"
+					tools:text="Ask me every time" />
+
+			</androidx.appcompat.widget.LinearLayoutCompat>
+
+			<androidx.appcompat.widget.LinearLayoutCompat
+				android:id="@+id/containerTimeRange"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:gravity="center_vertical"
+				android:orientation="horizontal"
+				app:divider="@drawable/divider_horizontal_10dp"
+				app:showDividers="middle">
+
+				<androidx.appcompat.widget.AppCompatTextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_weight="1"
+					android:text="@string/default_time_range"
+					android:textColor="?android:textColorSecondary"
+					android:textSize="12sp" />
+
+				<com.google.android.material.button.MaterialButton
+					android:id="@+id/buttonTimeRange"
+					style="@style/MaterialButton"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:paddingHorizontal="@dimen/default_padding"
+					android:paddingVertical="@dimen/small_padding"
+					android:paddingLeft="20dp"
+					android:paddingRight="20dp"
+					android:textColor="?android:textColorPrimary"
+					android:textColorHint="?colorSecondaryVariant"
+					app:cornerRadius="4dp"
+					app:strokeColor="?colorSecondaryVariant"
+					app:strokeWidth="1dp"
+					tools:text="08:30 - 15:30" />
+
+			</androidx.appcompat.widget.LinearLayoutCompat>
+
+		</androidx.appcompat.widget.LinearLayoutCompat>
+
+	</androidx.core.widget.NestedScrollView>
+
+	<androidx.constraintlayout.widget.ConstraintLayout
+		android:layout_width="match_parent"
+		android:layout_height="64dp"
+		android:background="?colorPrimaryTranslucent"
+		app:layout_constraintTop_toTopOf="parent">
+
+		<androidx.appcompat.widget.AppCompatTextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_margin="@dimen/default_padding"
+			android:text="@string/add_a_new_activity"
+			android:textColor="?android:textColorPrimary"
+			android:textSize="18sp"
+			app:fontFamily="@font/montserrat_bold"
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintLeft_toLeftOf="parent"
+			app:layout_constraintRight_toRightOf="parent"
+			app:layout_constraintTop_toTopOf="parent" />
+
+	</androidx.constraintlayout.widget.ConstraintLayout>
+
+	<com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+		android:id="@+id/buttonSave"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_margin="@dimen/default_padding"
+		android:gravity="center"
+		android:minWidth="0dp"
+		android:text="@string/save"
+		android:textColor="@color/white"
+		app:backgroundTint="?colorAccent"
+		app:icon="@drawable/ic_done"
+		app:iconPadding="10dp"
+		app:iconTint="@color/white"
+		app:layout_constraintBottom_toBottomOf="parent"
+		app:layout_constraintRight_toRightOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

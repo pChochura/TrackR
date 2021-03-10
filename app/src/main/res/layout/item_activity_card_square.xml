@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content"
+	android:background="@drawable/background_rounded"
+	android:backgroundTint="?colorSecondaryVariant">
+
+	<androidx.constraintlayout.widget.ConstraintLayout
+		android:layout_width="0dp"
+		android:layout_height="0dp"
+		android:background="?selectableItemBackground"
+		android:clickable="true"
+		android:focusable="true"
+		android:padding="@dimen/default_padding"
+		app:layout_constraintBottom_toBottomOf="parent"
+		app:layout_constraintDimensionRatio="W,1:1"
+		app:layout_constraintLeft_toLeftOf="parent"
+		app:layout_constraintRight_toRightOf="parent"
+		app:layout_constraintTop_toTopOf="parent">
+
+		<androidx.appcompat.widget.AppCompatImageView
+			android:id="@+id/imageIcon"
+			android:layout_width="64dp"
+			android:layout_height="64dp"
+			android:src="@drawable/ic_calendar"
+			app:layout_constraintBottom_toTopOf="@id/textTitle"
+			app:layout_constraintLeft_toLeftOf="parent"
+			app:layout_constraintRight_toRightOf="parent"
+			app:layout_constraintTop_toTopOf="parent"
+			app:layout_constraintVertical_chainStyle="packed"
+			app:tint="@color/yellow" />
+
+		<androidx.appcompat.widget.AppCompatTextView
+			android:id="@+id/textTitle"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="10dp"
+			android:textColor="@color/yellow"
+			android:textSize="18sp"
+			app:fontFamily="@font/montserrat_bold"
+			app:layout_constraintBottom_toTopOf="@id/textSubtitle"
+			app:layout_constraintLeft_toLeftOf="parent"
+			app:layout_constraintRight_toRightOf="parent"
+			app:layout_constraintTop_toBottomOf="@id/imageIcon"
+			app:layout_constraintVertical_chainStyle="packed"
+			tools:text="Mobitouch" />
+
+		<androidx.appcompat.widget.AppCompatTextView
+			android:id="@+id/textSubtitle"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="5dp"
+			android:textColor="@color/yellow"
+			android:textSize="12sp"
+			app:fontFamily="@font/montserrat_bold"
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintLeft_toLeftOf="parent"
+			app:layout_constraintRight_toRightOf="parent"
+			app:layout_constraintTop_toBottomOf="@id/textTitle"
+			app:layout_constraintVertical_chainStyle="packed"
+			tools:text="08:30 - 15:30" />
+
+		<androidx.appcompat.widget.AppCompatImageView
+			android:id="@+id/buttonMore"
+			android:layout_width="24dp"
+			android:layout_height="24dp"
+			android:background="?selectableItemBackgroundBorderless"
+			android:clickable="true"
+			android:focusable="true"
+			android:src="@drawable/ic_more"
+			app:layout_constraintRight_toRightOf="parent"
+			app:layout_constraintTop_toTopOf="parent"
+			app:tint="@color/yellow" />
+
+	</androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

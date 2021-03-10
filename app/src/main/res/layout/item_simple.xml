@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.AppCompatTextView
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:id="@+id/text"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content"
+	android:background="?selectableItemBackground"
+	android:clickable="true"
+	android:focusable="true"
+	android:fontFamily="@font/montserrat_bold"
+	android:padding="@dimen/small_padding"
+	android:textColor="?android:textColorPrimary"
+	android:textSize="18sp"
+	tools:text="Dollar ($)" />

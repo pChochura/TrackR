@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	android:layout_width="320dp"
+	android:layout_height="wrap_content"
+	android:background="@drawable/background_rounded"
+	android:backgroundTint="?colorPrimary"
+	android:gravity="center_horizontal"
+	android:orientation="vertical"
+	android:padding="@dimen/default_padding"
+	app:divider="@drawable/divider_vertical_10dp"
+	app:showDividers="middle">
+
+	<androidx.appcompat.widget.AppCompatTextView
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="@string/select_time"
+		android:textColor="?android:textColorPrimary"
+		android:textSize="18sp"
+		app:fontFamily="@font/montserrat_bold" />
+
+	<View
+		android:layout_width="match_parent"
+		android:layout_height="1dp"
+		android:background="?colorSecondaryVariant" />
+
+	<TimePicker
+		android:id="@+id/timePicker"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:headerBackground="?colorPrimary"
+		android:numbersBackgroundColor="?colorPrimaryVariant"
+		android:theme="@style/TimePicker"
+		app:layout_constraintLeft_toLeftOf="parent"
+		app:layout_constraintRight_toRightOf="parent"
+		app:layout_constraintTop_toBottomOf="@id/title" />
+
+	<View
+		android:layout_width="match_parent"
+		android:layout_height="1dp"
+		android:background="?colorSecondaryVariant" />
+
+	<androidx.appcompat.widget.LinearLayoutCompat
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_gravity="end"
+		android:orientation="horizontal">
+
+		<com.google.android.material.button.MaterialButton
+			android:id="@+id/buttonClear"
+			style="@style/MaterialButton"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:paddingHorizontal="20dp"
+			android:text="@string/clear"
+			android:textColor="?android:textColorSecondary" />
+
+		<com.google.android.material.button.MaterialButton
+			android:id="@+id/buttonSave"
+			style="@style/MaterialButton"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:fontFamily="@font/montserrat_bold"
+			android:paddingHorizontal="20dp"
+			android:text="@string/save"
+			android:textColor="?android:textColorPrimary" />
+
+	</androidx.appcompat.widget.LinearLayoutCompat>
+
+</androidx.appcompat.widget.LinearLayoutCompat>

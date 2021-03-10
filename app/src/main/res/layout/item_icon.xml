@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.AppCompatImageView
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="24dp"
+	android:layout_height="24dp"
+	android:layout_margin="@dimen/small_padding"
+	android:background="?selectableItemBackgroundBorderless"
+	android:clickable="true"
+	android:focusable="true"
+	android:src="@drawable/ic_calendar"
+	android:tint="?android:textColorPrimary" />

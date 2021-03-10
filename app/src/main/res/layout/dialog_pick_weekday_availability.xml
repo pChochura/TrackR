@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	android:layout_width="320dp"
+	android:layout_height="wrap_content"
+	android:background="@drawable/background_rounded"
+	android:backgroundTint="?colorPrimary"
+	android:gravity="center_horizontal"
+	android:orientation="vertical"
+	android:padding="@dimen/default_padding"
+	app:divider="@drawable/divider_vertical_10dp"
+	app:showDividers="middle">
+
+	<androidx.appcompat.widget.AppCompatTextView
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="@string/select_weekdays"
+		android:textColor="?android:textColorPrimary"
+		android:textSize="18sp"
+		app:fontFamily="@font/montserrat_bold" />
+
+	<View
+		android:layout_width="match_parent"
+		android:layout_height="1dp"
+		android:background="?colorSecondaryVariant" />
+
+	<androidx.constraintlayout.widget.ConstraintLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content">
+
+		<androidx.constraintlayout.helper.widget.Flow
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			app:constraint_referenced_ids="buttonWeekday0,buttonWeekday1,buttonWeekday2,buttonWeekday3,buttonWeekday4,buttonWeekday5,buttonWeekday6"
+			app:flow_horizontalGap="@dimen/small_padding"
+			app:flow_horizontalStyle="packed"
+			app:flow_maxElementsWrap="4"
+			app:flow_verticalGap="@dimen/small_padding"
+			app:flow_verticalStyle="packed"
+			app:flow_wrapMode="chain" />
+
+		<androidx.appcompat.widget.AppCompatToggleButton
+			android:id="@+id/buttonWeekday0"
+			style="@style/MaterialButton"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:background="@drawable/selector_toggle_button_background"
+			android:foreground="?selectableItemBackground"
+			android:outlineProvider="background"
+			android:paddingHorizontal="@dimen/default_padding"
+			android:paddingVertical="@dimen/small_padding"
+			android:textColor="@drawable/selector_toggle_button_text"
+			android:textOff="@string/weekday_0_abbrev"
+			android:textOn="@string/weekday_0_abbrev" />
+
+		<androidx.appcompat.widget.AppCompatToggleButton
+			android:id="@+id/buttonWeekday1"
+			style="@style/MaterialButton"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:background="@drawable/selector_toggle_button_background"
+			android:foreground="?selectableItemBackground"
+			android:outlineProvider="background"
+			android:paddingHorizontal="@dimen/default_padding"
+			android:paddingVertical="@dimen/small_padding"
+			android:textColor="@drawable/selector_toggle_button_text"
+			android:textOff="@string/weekday_1_abbrev"
+			android:textOn="@string/weekday_1_abbrev" />
+
+		<androidx.appcompat.widget.AppCompatToggleButton
+			android:id="@+id/buttonWeekday2"
+			style="@style/MaterialButton"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:background="@drawable/selector_toggle_button_background"
+			android:foreground="?selectableItemBackground"
+			android:outlineProvider="background"
+			android:paddingHorizontal="@dimen/default_padding"
+			android:paddingVertical="@dimen/small_padding"
+			android:textColor="@drawable/selector_toggle_button_text"
+			android:textOff="@string/weekday_2_abbrev"
+			android:textOn="@string/weekday_2_abbrev" />
+
+		<androidx.appcompat.widget.AppCompatToggleButton
+			android:id="@+id/buttonWeekday3"
+			style="@style/MaterialButton"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:background="@drawable/selector_toggle_button_background"
+			android:foreground="?selectableItemBackground"
+			android:outlineProvider="background"
+			android:paddingHorizontal="@dimen/default_padding"
+			android:paddingVertical="@dimen/small_padding"
+			android:textColor="@drawable/selector_toggle_button_text"
+			android:textOff="@string/weekday_3_abbrev"
+			android:textOn="@string/weekday_3_abbrev" />
+
+		<androidx.appcompat.widget.AppCompatToggleButton
+			android:id="@+id/buttonWeekday4"
+			style="@style/MaterialButton"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:background="@drawable/selector_toggle_button_background"
+			android:foreground="?selectableItemBackground"
+			android:outlineProvider="background"
+			android:paddingHorizontal="@dimen/default_padding"
+			android:paddingVertical="@dimen/small_padding"
+			android:textColor="@drawable/selector_toggle_button_text"
+			android:textOff="@string/weekday_4_abbrev"
+			android:textOn="@string/weekday_4_abbrev" />
+
+		<androidx.appcompat.widget.AppCompatToggleButton
+			android:id="@+id/buttonWeekday5"
+			style="@style/MaterialButton"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:background="@drawable/selector_toggle_button_background"
+			android:foreground="?selectableItemBackground"
+			android:outlineProvider="background"
+			android:paddingHorizontal="@dimen/default_padding"
+			android:paddingVertical="@dimen/small_padding"
+			android:textColor="@drawable/selector_toggle_button_text"
+			android:textOff="@string/weekday_5_abbrev"
+			android:textOn="@string/weekday_5_abbrev" />
+
+		<androidx.appcompat.widget.AppCompatToggleButton
+			android:id="@+id/buttonWeekday6"
+			style="@style/MaterialButton"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:background="@drawable/selector_toggle_button_background"
+			android:foreground="?selectableItemBackground"
+			android:outlineProvider="background"
+			android:paddingHorizontal="@dimen/default_padding"
+			android:paddingVertical="@dimen/small_padding"
+			android:textColor="@drawable/selector_toggle_button_text"
+			android:textOff="@string/weekday_6_abbrev"
+			android:textOn="@string/weekday_6_abbrev" />
+
+	</androidx.constraintlayout.widget.ConstraintLayout>
+
+	<View
+		android:layout_width="match_parent"
+		android:layout_height="1dp"
+		android:background="?colorSecondaryVariant" />
+
+	<com.google.android.material.button.MaterialButton
+		android:id="@+id/buttonSave"
+		style="@style/MaterialButton"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_gravity="end"
+		android:fontFamily="@font/montserrat_bold"
+		android:paddingHorizontal="20dp"
+		android:text="@string/save"
+		android:textColor="?android:textColorPrimary" />
+
+</androidx.appcompat.widget.LinearLayoutCompat>

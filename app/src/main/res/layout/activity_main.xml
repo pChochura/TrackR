@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:background="?colorPrimary">
+
+	<androidx.fragment.app.FragmentContainerView
+		android:id="@+id/containerFragment"
+		android:layout_width="match_parent"
+		android:layout_height="0dp"
+		app:layout_constraintBottom_toTopOf="@id/navigationBottom"
+		app:layout_constraintTop_toTopOf="parent" />
+
+	<androidx.constraintlayout.widget.ConstraintLayout
+		android:layout_width="match_parent"
+		android:layout_height="64dp"
+		android:background="?colorPrimaryTranslucent"
+		app:layout_constraintTop_toTopOf="parent">
+
+		<androidx.appcompat.widget.AppCompatImageView
+			android:id="@+id/buttonMenu"
+			android:layout_width="24dp"
+			android:layout_height="24dp"
+			android:layout_margin="@dimen/default_padding"
+			android:background="?selectableItemBackgroundBorderless"
+			android:clickable="true"
+			android:focusable="true"
+			android:src="@drawable/ic_menu"
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintLeft_toLeftOf="parent"
+			app:layout_constraintTop_toTopOf="parent"
+			app:tint="?android:textColorPrimary" />
+
+		<androidx.appcompat.widget.AppCompatTextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_margin="@dimen/default_padding"
+			android:text="@string/app_name"
+			android:textColor="?android:textColorPrimary"
+			android:textSize="18sp"
+			app:fontFamily="@font/montserrat_bold"
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintLeft_toLeftOf="parent"
+			app:layout_constraintRight_toRightOf="parent"
+			app:layout_constraintTop_toTopOf="parent" />
+
+		<androidx.appcompat.widget.AppCompatImageView
+			android:id="@+id/buttonProfile"
+			android:layout_width="32dp"
+			android:layout_height="32dp"
+			android:layout_margin="@dimen/default_padding"
+			android:background="?selectableItemBackgroundBorderless"
+			android:clickable="true"
+			android:focusable="true"
+			android:src="@drawable/ic_image_person"
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintRight_toRightOf="parent"
+			app:layout_constraintTop_toTopOf="parent" />
+
+	</androidx.constraintlayout.widget.ConstraintLayout>
+
+	<com.google.android.material.bottomnavigation.BottomNavigationView
+		android:id="@+id/navigationBottom"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		app:backgroundTint="?colorPrimary"
+		app:itemIconTint="@drawable/selector_menu_main"
+		app:itemRippleColor="?colorPrimaryVariant"
+		app:itemTextColor="@drawable/selector_menu_main"
+		app:labelVisibilityMode="labeled"
+		app:layout_constraintBottom_toBottomOf="parent"
+		app:menu="@menu/menu_main" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

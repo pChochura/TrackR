@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<dimen name="default_padding">16dp</dimen>
+	<dimen name="small_padding">8dp</dimen>
+	<dimen name="top_bar_padding">64dp</dimen>
+	<dimen name="bottom_padding">80dp</dimen>
+</resources>

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="320dp"
+	android:layout_height="wrap_content"
+	android:background="@drawable/background_rounded"
+	android:backgroundTint="?colorPrimary"
+	android:gravity="center_horizontal"
+	android:orientation="vertical"
+	android:padding="@dimen/default_padding"
+	app:divider="@drawable/divider_vertical_10dp"
+	app:showDividers="middle">
+
+	<androidx.appcompat.widget.AppCompatImageView
+		android:id="@+id/imageIcon"
+		android:layout_width="64dp"
+		android:layout_height="64dp"
+		android:background="@drawable/background_rounded"
+		android:backgroundTint="@color/orange"
+		android:padding="@dimen/default_padding"
+		android:src="@drawable/ic_home"
+		app:tint="?colorPrimary" />
+
+	<View
+		android:layout_width="match_parent"
+		android:layout_height="1dp"
+		android:background="?colorSecondaryVariant" />
+
+	<androidx.recyclerview.widget.RecyclerView
+		android:id="@+id/listIcons"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:orientation="horizontal"
+		android:requiresFadingEdge="horizontal"
+		app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+		app:spanCount="2"
+		tools:itemCount="12"
+		tools:listitem="@layout/item_icon" />
+
+	<View
+		android:layout_width="match_parent"
+		android:layout_height="1dp"
+		android:background="?colorSecondaryVariant" />
+
+	<androidx.recyclerview.widget.RecyclerView
+		android:id="@+id/listColors"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:orientation="horizontal"
+		android:requiresFadingEdge="horizontal"
+		app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+		tools:itemCount="6"
+		tools:listitem="@layout/item_color" />
+
+	<View
+		android:layout_width="match_parent"
+		android:layout_height="1dp"
+		android:background="?colorSecondaryVariant" />
+
+	<androidx.appcompat.widget.LinearLayoutCompat
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_gravity="end"
+		android:orientation="horizontal">
+
+		<com.google.android.material.button.MaterialButton
+			android:id="@+id/buttonCancel"
+			style="@style/MaterialButton"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:paddingHorizontal="20dp"
+			android:text="@string/cancel"
+			android:textColor="?android:textColorSecondary" />
+
+		<com.google.android.material.button.MaterialButton
+			android:id="@+id/buttonSave"
+			style="@style/MaterialButton"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:fontFamily="@font/montserrat_bold"
+			android:paddingHorizontal="20dp"
+			android:text="@string/save"
+			android:textColor="?android:textColorPrimary" />
+
+	</androidx.appcompat.widget.LinearLayoutCompat>
+
+</androidx.appcompat.widget.LinearLayoutCompat>
