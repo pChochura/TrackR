@@ -6,4 +6,6 @@ import kotlinx.serialization.Serializable
 
 @Parcelize
 @Serializable
-class TimePeriod(var hours: Int = 0, var minutes: Int = 0) : Parcelable
+class TimePeriod(var hours: Int = 0, var minutes: Int = 0) : Parcelable {
+	constructor(timePeriod: TimePeriod) : this(timePeriod.hours, timePeriod.minutes)
+}

@@ -6,10 +6,13 @@ import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.snackbar.Snackbar
+import com.pointlessapps.trackr.R
 import com.pointlessapps.trackr.activities.ActivityAddActivity
 import com.pointlessapps.trackr.adapters.AdapterAllActivities
 import com.pointlessapps.trackr.adapters.AdapterFavourites
 import com.pointlessapps.trackr.databinding.FragmentHomeBinding
+import com.pointlessapps.trackr.dialogs.DialogCompleteActivityInfo
 import com.pointlessapps.trackr.models.Activity
 import com.pointlessapps.trackr.utils.GridItemSpacingDecoration
 import com.pointlessapps.trackr.utils.ItemSpacingDecoration
@@ -32,6 +35,7 @@ class FragmentHome : FragmentCore<FragmentHomeBinding>(FragmentHomeBinding::infl
 		with(root.listFavourites) {
 			adapter = AdapterFavourites(viewModel.getFavourites()).apply {
 				onClickListener = { onActivityClicked(it) }
+				onMoreClickListener = { onActivityClicked(it, true) }
 				setHasStableIds(true)
 			}
 			layoutManager = object : GridLayoutManager(context, 2) {
@@ -45,6 +49,7 @@ class FragmentHome : FragmentCore<FragmentHomeBinding>(FragmentHomeBinding::infl
 				setHasStableIds(true)
 				onAddClickListener = { onAddActivityClicked() }
 				onClickListener = { onActivityClicked(it) }
+				onMoreClickListener = { onActivityClicked(it, true) }
 			}
 			layoutManager = object : LinearLayoutManager(context) {
 				override fun canScrollVertically() = false
@@ -57,7 +62,20 @@ class FragmentHome : FragmentCore<FragmentHomeBinding>(FragmentHomeBinding::infl
 		launcher.launch(Intent(requireContext(), ActivityAddActivity::class.java))
 	}
 
-	private fun onActivityClicked(activity: Activity) {
+	private fun onActivityClicked(activityInfo: Activity, forceCompleteInfo: Boolean = false) {
+		if (activityInfo.type.isComplete() && !forceCompleteInfo) {
+			Snackbar.make(
+				root.root,
+				requireContext().getString(R.string.added_activity_to_calendar, activityInfo.name),
+				Snackbar.LENGTH_LONG
+			).setAction(R.string.undo) {
 
+			}.show()
+
+			return
+		}
+
+		DialogCompleteActivityInfo(requireActivity(), activityInfo).show()
+			.setOnAddedListener { onActivityClicked(it) }
 	}
 }

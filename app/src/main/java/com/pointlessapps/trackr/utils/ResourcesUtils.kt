@@ -14,7 +14,6 @@ object ResourcesUtils {
 		R.color.blue,
 		R.color.yellow,
 		R.color.pink,
-		R.color.purple,
 		R.color.green,
 		R.color.teal,
 		R.color.red,

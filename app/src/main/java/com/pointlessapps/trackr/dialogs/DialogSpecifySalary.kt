@@ -1,19 +1,24 @@
 package com.pointlessapps.trackr.dialogs
 
 import androidx.activity.ComponentActivity
+import androidx.core.view.isVisible
 import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.MutableLiveData
 import com.pointlessapps.trackr.databinding.DialogSpecifySalaryBinding
 import com.pointlessapps.trackr.models.Salary
 
-class DialogSpecifySalary(private val activity: ComponentActivity, salary: Salary) :
-	DialogCore<DialogSpecifySalaryBinding>(activity, DialogSpecifySalaryBinding::inflate) {
+class DialogSpecifySalary(
+	private val activity: ComponentActivity,
+	salary: Salary,
+	private val clearable: Boolean = true
+) : DialogCore<DialogSpecifySalaryBinding>(activity, DialogSpecifySalaryBinding::inflate) {
 
-	private val salary = MutableLiveData(salary)
+	private val salary = MutableLiveData(Salary(salary))
 	private var onSavedListener: ((Salary?) -> Unit)? = null
 
 	override fun show(): DialogSpecifySalary {
 		makeDialog { binding, dialog ->
+			binding.buttonClear.isVisible = clearable
 			binding.buttonClear.setOnClickListener {
 				onSavedListener?.invoke(null)
 				dialog.dismiss()

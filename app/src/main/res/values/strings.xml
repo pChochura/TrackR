@@ -15,14 +15,17 @@
 	<string name="default_period">Default period</string>
 	<string name="default_time_range">Default time range</string>
 	<string name="cancel">Cancel</string>
-	<string name="salary">%.2f %s / %s</string>
+	<string name="salary_formatted">%.2f %s / %s</string>
+	<string name="salary">Salary</string>
 	<string name="unset">Unset</string>
 	<string name="time_based">Time based</string>
 	<string name="period_based">Period based</string>
 	<string name="one_time">One time</string>
-	<string name="period">%02dh %02dm</string>
-	<string name="time_range">%02d:%02d - %02d:%02d</string>
-	<string name="time">%02d:%02d</string>
+	<string name="period_formatted">%2dh %02dm</string>
+	<string name="period">Period</string>
+	<string name="time_range">%2d:%02d - %2d:%02d</string>
+	<string name="time_formatted">%2d:%02d</string>
+	<string name="time">Time</string>
 	<string name="one_time_description">If you want to track an activity but it doesn’t matter when or for how long it will last.</string>
 	<string name="period_based_description">Allows you to specify a time period describing how long an activity will last.</string>
 	<string name="time_based_description">Select start and end time of the activity.</string>
@@ -63,4 +66,10 @@
 	<string name="weekday_6_abbrev">Sun</string>
 	<string name="select_weekdays">Select weekdays</string>
 	<string name="cannot_be_empty">Cannot be empty</string>
+	<string name="confirm">Confirm</string>
+	<string name="discard_all_changes">Discard all changes</string>
+	<string name="discard_add_activity">Do you really want to remove this activity? You won\'t be able to recover it.</string>
+	<string name="add">Add</string>
+	<string name="added_activity_to_calendar">Added %s to the calendar</string>
+	<string name="undo">Undo</string>
 </resources>

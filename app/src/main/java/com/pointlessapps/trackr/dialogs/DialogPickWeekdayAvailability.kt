@@ -14,7 +14,7 @@ class DialogPickWeekdayAvailability(
 	DialogPickWeekdayAvailabilityBinding::inflate
 ) {
 
-	private val weekdayAvailability = MutableLiveData(weekdayAvailability)
+	private val weekdayAvailability = MutableLiveData(WeekdayAvailability(weekdayAvailability))
 	private var onSavedListener: ((WeekdayAvailability) -> Unit)? = null
 
 	override fun show(): DialogPickWeekdayAvailability {

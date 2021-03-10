@@ -9,6 +9,7 @@
 	android:backgroundTint="?colorSecondaryVariant">
 
 	<androidx.constraintlayout.widget.ConstraintLayout
+		android:id="@+id/containerClickable"
 		android:layout_width="0dp"
 		android:layout_height="0dp"
 		android:background="?selectableItemBackground"
@@ -65,11 +66,12 @@
 
 		<androidx.appcompat.widget.AppCompatImageView
 			android:id="@+id/buttonMore"
-			android:layout_width="24dp"
-			android:layout_height="24dp"
+			android:layout_width="32dp"
+			android:layout_height="32dp"
 			android:background="?selectableItemBackgroundBorderless"
 			android:clickable="true"
 			android:focusable="true"
+			android:padding="4dp"
 			android:src="@drawable/ic_more"
 			app:layout_constraintRight_toRightOf="parent"
 			app:layout_constraintTop_toTopOf="parent"

@@ -17,20 +17,47 @@ sealed class ActivityType(
 	@Parcelize
 	@Serializable
 	@SerialName("OneTime")
-	class OneTime : ActivityType(R.string.one_time, R.string.one_time_description)
+	class OneTime : ActivityType(R.string.one_time, R.string.one_time_description) {
+		override fun getSubtitle(context: Context) = context.getString(R.string.one_time)
+		override fun isComplete() = true
+	}
 
 	@Parcelize
 	@Serializable
 	@SerialName("PeriodBased")
 	class PeriodBased(var period: TimePeriod? = null) :
-		ActivityType(R.string.period_based, R.string.period_based_description)
+		ActivityType(R.string.period_based, R.string.period_based_description) {
+		override fun isComplete() = period != null
+		override fun getSubtitle(context: Context) = when (period) {
+			null -> context.getString(R.string.ask_me_every_time)
+			else -> context.getString(
+				R.string.period_formatted,
+				period!!.hours,
+				period!!.minutes,
+			)
+		}
+	}
 
 	@Parcelize
 	@Serializable
 	@SerialName("TimeBased")
 	class TimeBased(var range: TimeRange? = null) :
-		ActivityType(R.string.time_based, R.string.time_based_description)
+		ActivityType(R.string.time_based, R.string.time_based_description) {
+		override fun isComplete() = range != null
+		override fun getSubtitle(context: Context) = when (range) {
+			null -> context.getString(R.string.ask_me_every_time)
+			else -> context.getString(
+				R.string.time_range,
+				range!!.startTime.hours,
+				range!!.startTime.minutes,
+				range!!.endTime.hours,
+				range!!.endTime.minutes,
+			)
+		}
+	}
 
 	fun getName(context: Context) = context.getString(nameResId)
 	fun getDescription(context: Context) = context.getString(descriptionResId)
+	abstract fun getSubtitle(context: Context): String
+	abstract fun isComplete(): Boolean
 }

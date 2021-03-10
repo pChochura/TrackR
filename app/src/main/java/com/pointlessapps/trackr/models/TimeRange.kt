@@ -7,4 +7,6 @@ import kotlinx.serialization.Serializable
 @Parcelize
 @Serializable
 class TimeRange(var startTime: TimePeriod = TimePeriod(), var endTime: TimePeriod = TimePeriod()) :
-	Parcelable
+	Parcelable {
+	constructor(timeRange: TimeRange) : this(timeRange.startTime, timeRange.endTime)
+}

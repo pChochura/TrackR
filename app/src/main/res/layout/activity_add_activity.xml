@@ -277,6 +277,21 @@
 		android:background="?colorPrimaryTranslucent"
 		app:layout_constraintTop_toTopOf="parent">
 
+		<androidx.appcompat.widget.AppCompatImageView
+			android:id="@+id/buttonBack"
+			android:layout_width="24dp"
+			android:layout_height="24dp"
+			android:layout_margin="@dimen/default_padding"
+			android:background="?selectableItemBackgroundBorderless"
+			android:clickable="true"
+			android:focusable="true"
+			android:src="@drawable/ic_arrow_left"
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintLeft_toLeftOf="parent"
+			app:layout_constraintTop_toTopOf="parent"
+			app:tint="?android:textColorPrimary" />
+
+
 		<androidx.appcompat.widget.AppCompatTextView
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"

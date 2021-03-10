@@ -11,6 +11,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 class Salary(var amount: Float = 0f, var unit: Unit = Unit.DOLLAR, var type: Type = Type.PER_HOUR) :
 	Parcelable {
+	constructor(salary: Salary) : this(salary.amount, salary.unit, salary.type)
 
 	enum class Unit(@StringRes val nameResId: Int, val unit: String) {
 		DOLLAR(R.string.dollar, "$"),

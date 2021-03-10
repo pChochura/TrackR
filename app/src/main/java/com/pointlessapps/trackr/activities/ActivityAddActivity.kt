@@ -50,6 +50,7 @@ class ActivityAddActivity : AppCompatActivity() {
 			)
 			finish()
 		}
+		binding.buttonBack.setOnClickListener { onBackPressed() }
 	}
 
 	private fun displayErrors(
@@ -65,6 +66,18 @@ class ActivityAddActivity : AppCompatActivity() {
 				}
 			}
 		}
+	}
+
+	private fun displayDiscardDialog(callback: (Boolean) -> Unit) {
+		DialogMessage(
+			this,
+			R.string.discard_all_changes,
+			R.string.discard_add_activity,
+			R.string.confirm,
+			R.string.cancel
+		).show()
+			.setOnConfirmClicked { callback(true) }
+			.setOnCanceledClicked { callback(false) }
 	}
 
 	private fun prepareImageIcon(binding: ActivityAddActivityBinding, activity: Activity) {
@@ -104,7 +117,7 @@ class ActivityAddActivity : AppCompatActivity() {
 
 		val salary = activity.salary!!
 		binding.buttonSalary.text = getString(
-			R.string.salary,
+			R.string.salary_formatted,
 			salary.amount,
 			salary.unit,
 			salary.type.getAbbreviation(applicationContext)
@@ -139,7 +152,7 @@ class ActivityAddActivity : AppCompatActivity() {
 			return
 		}
 
-		binding.buttonPeriod.text = getString(R.string.period, period.hours, period.minutes)
+		binding.buttonPeriod.text = getString(R.string.period_formatted, period.hours, period.minutes)
 	}
 
 	private fun prepareTimeRangeComponent(binding: ActivityAddActivityBinding, activity: Activity) {
@@ -169,5 +182,13 @@ class ActivityAddActivity : AppCompatActivity() {
 			range.endTime.hours,
 			range.endTime.minutes
 		)
+	}
+
+	override fun onBackPressed() {
+		displayDiscardDialog { discard ->
+			if (discard) {
+				super.onBackPressed()
+			}
+		}
 	}
 }

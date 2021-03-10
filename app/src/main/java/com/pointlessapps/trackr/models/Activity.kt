@@ -11,7 +11,7 @@ import java.util.*
 
 @Parcelize
 @Entity(tableName = "table_activity")
-data class Activity(
+class Activity(
 	@PrimaryKey @ColumnInfo(name = "id") val id: Int = UUID.randomUUID().hashCode(),
 	@ColumnInfo(name = "name") var name: String = "",
 	@ColumnInfo(name = "color") @ColorInt var color: Int = 0,
@@ -19,4 +19,22 @@ data class Activity(
 	@ColumnInfo(name = "salary") var salary: Salary? = null,
 	@ColumnInfo(name = "type") var type: ActivityType = ActivityType.OneTime(),
 	@ColumnInfo(name = "weekday_availability") var weekdayAvailability: WeekdayAvailability = WeekdayAvailability()
-) : Parcelable
+) : Parcelable {
+	constructor(activity: Activity) : this(
+		activity.id,
+		activity.name,
+		activity.color,
+		activity.icon,
+		activity.salary?.let { Salary(it) },
+		when (activity.type) {
+			is ActivityType.OneTime -> ActivityType.OneTime()
+			is ActivityType.PeriodBased -> ActivityType.PeriodBased(
+				(activity.type as ActivityType.PeriodBased).period?.let { TimePeriod(it) }
+			)
+			is ActivityType.TimeBased -> ActivityType.TimeBased(
+				(activity.type as ActivityType.TimeBased).range?.let { TimeRange(it) }
+			)
+		},
+		WeekdayAvailability(activity.weekdayAvailability)
+	)
+}

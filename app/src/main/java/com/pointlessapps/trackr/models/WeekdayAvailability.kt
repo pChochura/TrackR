@@ -13,6 +13,7 @@ class WeekdayAvailability(
 		(0 until Calendar.getInstance().getMaximum(Calendar.DAY_OF_WEEK)).map { true }
 			.toBooleanArray()
 ) : Parcelable {
+	constructor(weekdayAvailability: WeekdayAvailability) : this(weekdayAvailability.availability)
 
 	fun getAll() = availability
 	fun getAt(index: Int) = availability[index]
