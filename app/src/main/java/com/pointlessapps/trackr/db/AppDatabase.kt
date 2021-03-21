@@ -8,18 +8,21 @@ import androidx.room.TypeConverters
 import com.pointlessapps.trackr.R
 import com.pointlessapps.trackr.converters.ConverterAny
 import com.pointlessapps.trackr.daos.DaoActivity
+import com.pointlessapps.trackr.daos.DaoEvent
 import com.pointlessapps.trackr.models.Activity
+import com.pointlessapps.trackr.models.Event
 import com.pointlessapps.trackr.utils.Utils
 import java.util.*
 
 @Database(
-	entities = [Activity::class],
+	entities = [Activity::class, Event::class],
 	version = 1
 )
 @TypeConverters(ConverterAny::class)
 abstract class AppDatabase : RoomDatabase() {
 
 	abstract fun daoActivity(): DaoActivity
+	abstract fun daoEvent(): DaoEvent
 
 	companion object : Utils.SingletonHolder<AppDatabase, Context>({
 		Room.databaseBuilder(

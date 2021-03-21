@@ -20,11 +20,6 @@
 		android:textSize="18sp"
 		app:fontFamily="@font/montserrat_bold" />
 
-	<View
-		android:layout_width="match_parent"
-		android:layout_height="1dp"
-		android:background="?colorSecondaryVariant" />
-
 	<androidx.constraintlayout.widget.ConstraintLayout
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content">
@@ -140,20 +135,15 @@
 
 	</androidx.constraintlayout.widget.ConstraintLayout>
 
-	<View
-		android:layout_width="match_parent"
-		android:layout_height="1dp"
-		android:background="?colorSecondaryVariant" />
-
 	<com.google.android.material.button.MaterialButton
 		android:id="@+id/buttonSave"
 		style="@style/MaterialButton"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:layout_gravity="end"
-		android:fontFamily="@font/montserrat_bold"
 		android:paddingHorizontal="20dp"
 		android:text="@string/save"
-		android:textColor="?android:textColorPrimary" />
+		android:textColor="?android:textColorPrimary"
+		app:fontFamily="@font/montserrat_bold" />
 
 </androidx.appcompat.widget.LinearLayoutCompat>

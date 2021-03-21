@@ -40,12 +40,21 @@
 		<item name="rippleColor">?attr/colorSecondary</item>
 	</style>
 
-	<style name="TimePicker" parent="@style/Widget.MaterialComponents.TimePicker.Clock">
+	<style name="TimePicker">
 		<item name="android:background">?attr/colorPrimary</item>
 		<item name="android:headerBackground">?attr/colorPrimary</item>
 		<item name="android:fontFamily">@font/montserrat</item>
-		<item name="android:textColorPrimaryInverse">?android:textColorPrimary</item>
-		<item name="android:textColorSecondaryInverse">?android:textColorSecondary</item>
-		<item name="colorAccent">?android:textColorSecondary</item>
+		<item name="android:textColorPrimaryInverse">?android:attr/textColorPrimary</item>
+		<item name="android:textColorSecondaryInverse">?attr/colorSecondaryVariant</item>
+		<item name="colorControlActivated">?colorPrimary</item>
+	</style>
+
+	<style name="DatePicker">
+		<item name="android:background">?attr/colorPrimary</item>
+		<item name="android:headerBackground">?attr/colorPrimary</item>
+		<item name="android:fontFamily">@font/montserrat</item>
+		<item name="android:textColorPrimaryInverse">?android:attr/textColorPrimary</item>
+		<item name="android:textColorSecondaryInverse">?attr/colorSecondaryVariant</item>
+		<item name="colorControlActivated">?attr/colorSecondaryVariant</item>
 	</style>
 </resources>

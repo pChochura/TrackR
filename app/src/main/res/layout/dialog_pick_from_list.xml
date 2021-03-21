@@ -21,11 +21,6 @@
 		android:textSize="18sp"
 		app:fontFamily="@font/montserrat_bold" />
 
-	<View
-		android:layout_width="match_parent"
-		android:layout_height="1dp"
-		android:background="?colorSecondaryVariant" />
-
 	<androidx.recyclerview.widget.RecyclerView
 		android:id="@+id/listItems"
 		android:layout_width="match_parent"
@@ -33,11 +28,6 @@
 		app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
 		tools:itemCount="3"
 		tools:listitem="@layout/item_activity_type" />
-
-	<View
-		android:layout_width="match_parent"
-		android:layout_height="1dp"
-		android:background="?colorSecondaryVariant" />
 
 	<com.google.android.material.button.MaterialButton
 		android:id="@+id/buttonCancel"

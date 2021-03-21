@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="320dp"
+	android:layout_height="wrap_content"
+	android:background="@drawable/background_rounded"
+	android:backgroundTint="?colorPrimary"
+	android:gravity="center_horizontal"
+	android:orientation="vertical"
+	android:padding="@dimen/default_padding"
+	app:divider="@drawable/divider_vertical_10dp"
+	app:showDividers="middle">
+
+	<androidx.appcompat.widget.AppCompatTextView
+		android:id="@+id/textTitle"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:textColor="?android:textColorPrimary"
+		android:textSize="18sp"
+		app:fontFamily="@font/montserrat_bold"
+		tools:text="Mobitouch" />
+
+	<androidx.appcompat.widget.LinearLayoutCompat
+		android:id="@+id/containerIncome"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:gravity="center_vertical"
+		android:orientation="horizontal"
+		app:divider="@drawable/divider_horizontal_10dp"
+		app:showDividers="middle">
+
+		<androidx.appcompat.widget.AppCompatTextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_weight="1"
+			android:text="@string/income"
+			android:textColor="?android:textColorSecondary"
+			android:textSize="14sp" />
+
+		<androidx.appcompat.widget.AppCompatTextView
+			android:id="@+id/textIncome"
+			style="@style/MaterialButton"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:paddingHorizontal="@dimen/default_padding"
+			android:paddingVertical="@dimen/small_padding"
+			android:paddingLeft="20dp"
+			android:paddingRight="20dp"
+			android:textColor="?android:textColorPrimary"
+			app:fontFamily="@font/montserrat_bold"
+			tools:text="+245 zł" />
+
+	</androidx.appcompat.widget.LinearLayoutCompat>
+
+	<androidx.appcompat.widget.LinearLayoutCompat
+		android:id="@+id/containerPeriod"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:gravity="center_vertical"
+		android:orientation="horizontal"
+		app:divider="@drawable/divider_horizontal_10dp"
+		app:showDividers="middle">
+
+		<androidx.appcompat.widget.AppCompatTextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_weight="1"
+			android:text="@string/period"
+			android:textColor="?android:textColorSecondary"
+			android:textSize="14sp" />
+
+		<androidx.appcompat.widget.AppCompatTextView
+			android:id="@+id/textPeriod"
+			style="@style/MaterialButton"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:paddingHorizontal="@dimen/default_padding"
+			android:paddingVertical="@dimen/small_padding"
+			android:paddingLeft="20dp"
+			android:paddingRight="20dp"
+			android:textColor="?android:textColorPrimary"
+			app:fontFamily="@font/montserrat_bold"
+			tools:text="01h 30m" />
+
+	</androidx.appcompat.widget.LinearLayoutCompat>
+
+	<androidx.appcompat.widget.LinearLayoutCompat
+		android:id="@+id/containerTimeRange"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:gravity="center_vertical"
+		android:orientation="horizontal"
+		app:divider="@drawable/divider_horizontal_10dp"
+		app:showDividers="middle">
+
+		<androidx.appcompat.widget.AppCompatTextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_weight="1"
+			android:text="@string/time"
+			android:textColor="?android:textColorSecondary"
+			android:textSize="14sp" />
+
+		<androidx.appcompat.widget.AppCompatTextView
+			android:id="@+id/textTimeRange"
+			style="@style/MaterialButton"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:paddingHorizontal="@dimen/default_padding"
+			android:paddingVertical="@dimen/small_padding"
+			android:paddingLeft="20dp"
+			android:paddingRight="20dp"
+			android:textColor="?android:textColorPrimary"
+			app:fontFamily="@font/montserrat_bold"
+			tools:text="08:30 - 15:30" />
+
+	</androidx.appcompat.widget.LinearLayoutCompat>
+
+	<androidx.appcompat.widget.LinearLayoutCompat
+		android:id="@+id/containerDate"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:gravity="center_vertical"
+		android:orientation="horizontal"
+		app:divider="@drawable/divider_horizontal_10dp"
+		app:showDividers="middle">
+
+		<androidx.appcompat.widget.AppCompatTextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_weight="1"
+			android:text="@string/date"
+			android:textColor="?android:textColorSecondary"
+			android:textSize="14sp" />
+
+		<androidx.appcompat.widget.AppCompatTextView
+			android:id="@+id/textDate"
+			style="@style/MaterialButton"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:paddingHorizontal="@dimen/default_padding"
+			android:paddingVertical="@dimen/small_padding"
+			android:paddingLeft="20dp"
+			android:paddingRight="20dp"
+			android:textColor="?android:textColorPrimary"
+			app:fontFamily="@font/montserrat_bold"
+			tools:text="18.03.2021" />
+
+	</androidx.appcompat.widget.LinearLayoutCompat>
+
+	<androidx.appcompat.widget.LinearLayoutCompat
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_gravity="end"
+		android:orientation="horizontal">
+
+		<com.google.android.material.button.MaterialButton
+			android:id="@+id/buttonDelete"
+			style="@style/MaterialButton"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:paddingHorizontal="20dp"
+			android:text="@string/delete"
+			android:textColor="?android:textColorSecondary" />
+
+		<com.google.android.material.button.MaterialButton
+			android:id="@+id/buttonOk"
+			style="@style/MaterialButton"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:paddingHorizontal="20dp"
+			android:text="@android:string/ok"
+			android:textColor="?android:textColorPrimary"
+			app:fontFamily="@font/montserrat_bold" />
+
+	</androidx.appcompat.widget.LinearLayoutCompat>
+
+</androidx.appcompat.widget.LinearLayoutCompat>

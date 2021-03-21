@@ -21,10 +21,10 @@
 	<string name="time_based">Time based</string>
 	<string name="period_based">Period based</string>
 	<string name="one_time">One time</string>
-	<string name="period_formatted">%2dh %02dm</string>
+	<string name="period_formatted">%1$2dh %2$02dm</string>
 	<string name="period">Period</string>
-	<string name="time_range">%2d:%02d - %2d:%02d</string>
-	<string name="time_formatted">%2d:%02d</string>
+	<string name="time_range_formatted">%1$2d:%2$02d - %3$2d:%4$02d</string>
+	<string name="time_formatted">%1$2d:%2$02d</string>
 	<string name="time">Time</string>
 	<string name="one_time_description">If you want to track an activity but it doesn’t matter when or for how long it will last.</string>
 	<string name="period_based_description">Allows you to specify a time period describing how long an activity will last.</string>
@@ -60,7 +60,7 @@
 	<string name="weekday_0_abbrev">Mon</string>
 	<string name="weekday_1_abbrev">Tue</string>
 	<string name="weekday_2_abbrev">Wed</string>
-	<string name="weekday_3_abbrev">thu</string>
+	<string name="weekday_3_abbrev">Thu</string>
 	<string name="weekday_4_abbrev">Fri</string>
 	<string name="weekday_5_abbrev">Sat</string>
 	<string name="weekday_6_abbrev">Sun</string>
@@ -72,4 +72,16 @@
 	<string name="add">Add</string>
 	<string name="added_activity_to_calendar">Added %s to the calendar</string>
 	<string name="undo">Undo</string>
+	<string name="date">Date</string>
+	<string name="date_formatted">%1$td.%1$tm.%1$tY</string>
+	<string name="select_date">Select date</string>
+	<string name="income_formatted">+%1$.2f %2$s</string>
+	<string name="have_to_be_set_to_per_occurrence">Have to be set to "Per occurrence"</string>
+	<string name="income">Income</string>
+	<string name="delete">Delete</string>
+	<string name="you_have_no_favourites">You have no favourites!</string>
+	<string name="tap_here_to_add_one">Tap here to add one</string>
+	<string name="or_hide_section">Or hide section</string>
+	<string name="are_you_sure">Are you sure?</string>
+	<string name="hide_favourites_section_description">Do you really want to hide this section? You always can show it again from the settings.</string>
 </resources>

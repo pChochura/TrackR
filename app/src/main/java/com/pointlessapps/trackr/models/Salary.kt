@@ -25,8 +25,8 @@ class Salary(var amount: Float = 0f, var unit: Unit = Unit.DOLLAR, var type: Typ
 
 	enum class Type(@StringRes val nameResId: Int, @StringRes val abbrevResId: Int) {
 		PER_HOUR(R.string.per_hour, R.string.per_hour_abbrev),
-		PER_DAY(R.string.per_day, R.string.per_day_abbrev),
-		PER_WEEK(R.string.per_week, R.string.per_week_abbrev),
+//		PER_DAY(R.string.per_day, R.string.per_day_abbrev),
+//		PER_WEEK(R.string.per_week, R.string.per_week_abbrev),
 		PER_MONTH(R.string.per_month, R.string.per_month_abbrev),
 		PER_OCCURRENCE(R.string.per_occurrence, R.string.per_occurrence_abbrev);
 

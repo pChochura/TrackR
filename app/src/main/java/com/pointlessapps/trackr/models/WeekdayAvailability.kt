@@ -40,7 +40,7 @@ class WeekdayAvailability(
 				return@forEachIndexed
 			}
 
-			if (available || availability[ranges.last().second]) {
+			if (available || availability.getOrNull(ranges.lastOrNull()?.second ?: 0) == true) {
 				ranges[ranges.lastIndex] = ranges.last().copy(second = index)
 			}
 		}

@@ -6,6 +6,7 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
+import com.google.android.material.color.MaterialColors
 import com.pointlessapps.trackr.R
 import com.pointlessapps.trackr.databinding.ActivityAddActivityBinding
 import com.pointlessapps.trackr.dialogs.*
@@ -57,12 +58,27 @@ class ActivityAddActivity : AppCompatActivity() {
 		binding: ActivityAddActivityBinding,
 		errors: List<ViewModelAddActivity.ErrorType>
 	) {
+		val defaultColor = ColorStateList.valueOf(
+			MaterialColors.getColor(
+				binding.inputName,
+				R.attr.colorSecondaryVariant
+			)
+		)
+		binding.inputName.backgroundTintList = defaultColor
+		binding.buttonSalary.strokeColor = defaultColor
+		binding.inputNameErrorLabel.isVisible = false
+		binding.buttonSalaryErrorLabel.isVisible = false
 		errors.forEach {
 			when (it) {
 				ViewModelAddActivity.ErrorType.BLANK_NAME -> {
 					binding.inputName.backgroundTintList =
 						ColorStateList.valueOf(getColor(R.color.red))
 					binding.inputNameErrorLabel.isVisible = true
+				}
+				ViewModelAddActivity.ErrorType.ONE_TIME_WITH_TIME_BASED_SALARY -> {
+					binding.buttonSalary.strokeColor =
+						ColorStateList.valueOf(getColor(R.color.red))
+					binding.buttonSalaryErrorLabel.isVisible = true
 				}
 			}
 		}
@@ -152,7 +168,8 @@ class ActivityAddActivity : AppCompatActivity() {
 			return
 		}
 
-		binding.buttonPeriod.text = getString(R.string.period_formatted, period.hours, period.minutes)
+		binding.buttonPeriod.text =
+			getString(R.string.period_formatted, period.hours, period.minutes)
 	}
 
 	private fun prepareTimeRangeComponent(binding: ActivityAddActivityBinding, activity: Activity) {
@@ -176,7 +193,7 @@ class ActivityAddActivity : AppCompatActivity() {
 		}
 
 		binding.buttonTimeRange.text = getString(
-			R.string.time_range,
+			R.string.time_range_formatted,
 			range.startTime.hours,
 			range.startTime.minutes,
 			range.endTime.hours,

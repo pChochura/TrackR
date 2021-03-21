@@ -22,11 +22,6 @@
 		app:fontFamily="@font/montserrat_bold"
 		tools:text="Mobitouch" />
 
-	<View
-		android:layout_width="match_parent"
-		android:layout_height="1dp"
-		android:background="?colorSecondaryVariant" />
-
 	<androidx.appcompat.widget.LinearLayoutCompat
 		android:id="@+id/containerSalary"
 		android:layout_width="match_parent"
@@ -166,10 +161,40 @@
 
 	</androidx.appcompat.widget.LinearLayoutCompat>
 
-	<View
+	<androidx.appcompat.widget.LinearLayoutCompat
+		android:id="@+id/containerDate"
 		android:layout_width="match_parent"
-		android:layout_height="1dp"
-		android:background="?colorSecondaryVariant" />
+		android:layout_height="wrap_content"
+		android:gravity="center_vertical"
+		android:orientation="horizontal"
+		app:divider="@drawable/divider_horizontal_10dp"
+		app:showDividers="middle">
+
+		<androidx.appcompat.widget.AppCompatTextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_weight="1"
+			android:text="@string/date"
+			android:textColor="?android:textColorPrimary"
+			android:textSize="14sp" />
+
+		<com.google.android.material.button.MaterialButton
+			android:id="@+id/buttonDate"
+			style="@style/MaterialButton"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:paddingHorizontal="@dimen/default_padding"
+			android:paddingVertical="@dimen/small_padding"
+			android:paddingLeft="20dp"
+			android:paddingRight="20dp"
+			android:textColor="?android:textColorPrimary"
+			android:textColorHint="?colorSecondaryVariant"
+			app:cornerRadius="4dp"
+			app:strokeColor="?colorSecondaryVariant"
+			app:strokeWidth="1dp"
+			tools:text="18.03.2021" />
+
+	</androidx.appcompat.widget.LinearLayoutCompat>
 
 	<androidx.appcompat.widget.LinearLayoutCompat
 		android:layout_width="wrap_content"
@@ -191,10 +216,10 @@
 			style="@style/MaterialButton"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:fontFamily="@font/montserrat_bold"
 			android:paddingHorizontal="20dp"
 			android:text="@string/add"
-			android:textColor="?android:textColorPrimary" />
+			android:textColor="?android:textColorPrimary"
+			app:fontFamily="@font/montserrat_bold" />
 
 	</androidx.appcompat.widget.LinearLayoutCompat>
 

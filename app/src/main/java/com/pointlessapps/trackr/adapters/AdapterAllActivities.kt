@@ -1,44 +1,91 @@
 package com.pointlessapps.trackr.adapters
 
-import androidx.core.view.isGone
+import android.content.res.ColorStateList
 import androidx.lifecycle.LiveData
+import androidx.viewbinding.ViewBinding
+import com.google.android.material.color.MaterialColors
+import com.pointlessapps.trackr.R
 import com.pointlessapps.trackr.databinding.ItemActivityCardRectangleAdderBinding
 import com.pointlessapps.trackr.databinding.ItemActivityCardRectangleBinding
 import com.pointlessapps.trackr.models.Activity
-import com.pointlessapps.trackr.models.ActivityType
+import com.pointlessapps.trackr.utils.InflateMethod
+import com.pointlessapps.trackr.utils.isNightMode
 
 class AdapterAllActivities(list: LiveData<List<Activity>>) :
-	AdapterCore<Activity, ItemActivityCardRectangleBinding, ItemActivityCardRectangleAdderBinding>(
-		list,
-		ItemActivityCardRectangleBinding::inflate,
-		ItemActivityCardRectangleAdderBinding::inflate,
-	) {
+	AdapterCore<Activity>(list, viewTypeContainer) {
+
+	init {
+		setHasStableIds(true)
+	}
+
+	companion object {
+		val viewTypeContainer = object : AdapterCore.ViewTypeContainer() {
+			override fun getInflateMethodByNumber(viewType: Int): InflateMethod<ViewBinding> =
+				when (viewType) {
+					ViewType.SIMPLE.ordinal -> ItemActivityCardRectangleBinding::inflate
+					else -> ItemActivityCardRectangleAdderBinding::inflate
+				}
+		}
+	}
+
+	enum class ViewType {
+		ADDER, SIMPLE
+	}
 
 	var onMoreClickListener: ((Activity) -> Unit)? = null
+	var onAddClickListener: (() -> Unit)? = null
 
-	override fun onBindAdder(root: ItemActivityCardRectangleAdderBinding) {
-		root.root.clipToOutline = true
-		root.containerClickable.setOnClickListener {
+	override fun getItemCount() = (items.value?.size ?: 0) + 1
+	override fun getViewType(item: Activity?) = when (item) {
+		null -> ViewType.ADDER.ordinal
+		else -> ViewType.SIMPLE.ordinal
+	}
+
+	override fun onBind(binding: ViewBinding, item: Activity?) = when {
+		getViewType(item) == ViewType.SIMPLE.ordinal && item != null ->
+			onBindSimple(binding as ItemActivityCardRectangleBinding, item)
+		else -> onBindAdder(binding as ItemActivityCardRectangleAdderBinding)
+	}
+
+	private fun onBindAdder(binding: ViewBinding) {
+		if (binding !is ItemActivityCardRectangleAdderBinding) {
+			return
+		}
+
+		binding.root.clipToOutline = true
+		binding.containerClickable.setOnClickListener {
 			onAddClickListener?.invoke()
 		}
 	}
 
-	override fun onBind(root: ItemActivityCardRectangleBinding, item: Activity) {
-		root.containerClickable.setOnClickListener { onClickListener?.invoke(item) }
-		root.buttonMore.setOnClickListener { onMoreClickListener?.invoke(item) }
+	private fun onBindSimple(binding: ItemActivityCardRectangleBinding, item: Activity) {
+		binding.containerClickable.setOnClickListener { onClickListener?.invoke(item) }
+		binding.buttonMore.setOnClickListener { onMoreClickListener?.invoke(item) }
 
-		root.buttonMore.isGone = item.type is ActivityType.OneTime && item.salary == null
-
-		root.root.clipToOutline = true
-		root.textTitle.text = item.name
-		root.textSubtitle.text = item.type.getSubtitle(root.textSubtitle.context)
-		root.imageIcon.setImageResource(item.icon)
+		binding.root.clipToOutline = true
+		binding.textTitle.text = item.name
+		binding.textSubtitle.text = item.type.getSubtitle(binding.textSubtitle.context)
+		binding.imageIcon.setImageResource(item.icon)
 
 		with(item.color) {
-			root.textTitle.setTextColor(this)
-			root.textSubtitle.setTextColor(this)
-			root.imageIcon.setColorFilter(this)
-			root.buttonMore.setColorFilter(this)
+			val neutralColor = MaterialColors.getColor(binding.root, R.attr.colorSecondaryVariant)
+			val textColor = MaterialColors.getColor(binding.root, android.R.attr.textColorSecondary)
+			when (binding.root.context.isNightMode()) {
+				true -> {
+					binding.root.backgroundTintList = ColorStateList.valueOf(neutralColor)
+					binding.textTitle.setTextColor(this)
+					binding.textSubtitle.setTextColor(this)
+					binding.imageIcon.setColorFilter(this)
+					binding.buttonMore.setColorFilter(this)
+				}
+				false -> {
+					binding.root.backgroundTintList = ColorStateList.valueOf(this)
+					binding.textTitle.setTextColor(textColor)
+					binding.textSubtitle.setTextColor(textColor)
+					binding.imageIcon.setColorFilter(textColor)
+					binding.buttonMore.setColorFilter(textColor)
+				}
+			}
 		}
 	}
 }

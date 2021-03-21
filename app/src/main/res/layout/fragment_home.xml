@@ -4,57 +4,68 @@
 	xmlns:app="http://schemas.android.com/apk/res-auto"
 	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
-	android:layout_height="wrap_content">
+	android:layout_height="match_parent">
 
 	<androidx.core.widget.NestedScrollView
+		android:id="@+id/containerLists"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:clipToPadding="false"
 		android:paddingTop="@dimen/top_bar_padding"
-		android:paddingBottom="@dimen/bottom_padding">
+		android:paddingBottom="@dimen/bottom_padding"
+		android:visibility="gone">
 
 		<androidx.appcompat.widget.LinearLayoutCompat
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
+			android:animateLayoutChanges="true"
 			android:orientation="vertical"
 			android:paddingHorizontal="@dimen/default_padding">
 
-			<androidx.constraintlayout.widget.ConstraintLayout
+			<androidx.appcompat.widget.LinearLayoutCompat
+				android:id="@+id/containerFavourites"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				android:minHeight="40dp">
+				android:orientation="vertical">
 
-				<androidx.appcompat.widget.AppCompatTextView
-					android:layout_width="wrap_content"
+				<androidx.constraintlayout.widget.ConstraintLayout
+					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
-					android:text="@string/favourites"
-					android:textColor="?android:textColorPrimary"
-					app:layout_constraintBottom_toBottomOf="parent"
-					app:layout_constraintLeft_toLeftOf="parent"
-					app:layout_constraintTop_toTopOf="parent" />
+					android:minHeight="40dp">
 
-				<com.google.android.material.button.MaterialButton
-					android:id="@+id/buttonEditFavourites"
-					style="@style/MaterialButton"
-					android:layout_width="wrap_content"
+					<androidx.appcompat.widget.AppCompatTextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text="@string/favourites"
+						android:textColor="?android:textColorPrimary"
+						app:layout_constraintBottom_toBottomOf="parent"
+						app:layout_constraintLeft_toLeftOf="parent"
+						app:layout_constraintTop_toTopOf="parent" />
+
+					<com.google.android.material.button.MaterialButton
+						android:id="@+id/buttonEditFavourites"
+						style="@style/MaterialButton"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text="@string/edit"
+						android:textColor="?android:textColorSecondary"
+						android:textSize="12sp"
+						app:layout_constraintBottom_toBottomOf="parent"
+						app:layout_constraintRight_toRightOf="parent"
+						app:layout_constraintTop_toTopOf="parent" />
+
+				</androidx.constraintlayout.widget.ConstraintLayout>
+
+				<androidx.recyclerview.widget.RecyclerView
+					android:id="@+id/listFavourites"
+					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
-					android:text="@string/edit"
-					android:textColor="?android:textColorSecondary"
-					android:textSize="12sp"
-					app:layout_constraintBottom_toBottomOf="parent"
-					app:layout_constraintRight_toRightOf="parent"
-					app:layout_constraintTop_toTopOf="parent" />
+					app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+					app:spanCount="2"
+					tools:itemCount="2"
+					tools:listitem="@layout/item_activity_card_square" />
 
-			</androidx.constraintlayout.widget.ConstraintLayout>
-
-			<androidx.recyclerview.widget.RecyclerView
-				android:id="@+id/listFavourites"
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-				app:spanCount="2"
-				tools:itemCount="2"
-				tools:listitem="@layout/item_activity_card_square" />
+			</androidx.appcompat.widget.LinearLayoutCompat>
 
 			<androidx.constraintlayout.widget.ConstraintLayout
 				android:layout_width="match_parent"
@@ -82,5 +93,13 @@
 		</androidx.appcompat.widget.LinearLayoutCompat>
 
 	</androidx.core.widget.NestedScrollView>
+
+	<com.google.android.material.progressindicator.CircularProgressIndicator
+		android:id="@+id/progress"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_gravity="center"
+		android:indeterminate="true"
+		app:indicatorColor="?colorAccent" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

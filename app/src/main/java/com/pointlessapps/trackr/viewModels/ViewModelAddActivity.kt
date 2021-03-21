@@ -69,14 +69,22 @@ class ViewModelAddActivity(application: Application) : AndroidViewModel(applicat
 
 	fun checkForErrors(): List<ErrorType>? {
 		val errors = mutableListOf<ErrorType>()
-		if (_activity.value!!.name.isBlank()) {
+		val activityInfo = _activity.value!!
+		if (activityInfo.name.isBlank()) {
 			errors.add(ErrorType.BLANK_NAME)
+		}
+
+		if (activityInfo.type is ActivityType.OneTime &&
+			activityInfo.salary != null &&
+			activityInfo.salary?.type != Salary.Type.PER_OCCURRENCE
+		) {
+			errors.add(ErrorType.ONE_TIME_WITH_TIME_BASED_SALARY)
 		}
 
 		return errors.takeIf(List<ErrorType>::isNotEmpty)
 	}
 
 	enum class ErrorType {
-		BLANK_NAME
+		BLANK_NAME, ONE_TIME_WITH_TIME_BASED_SALARY
 	}
 }

@@ -3,23 +3,23 @@ package com.pointlessapps.trackr.activities
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.findNavController
+import androidx.navigation.ui.NavigationUI
+import androidx.navigation.ui.setupWithNavController
 import com.pointlessapps.trackr.R
 import com.pointlessapps.trackr.databinding.ActivityMainBinding
 import com.pointlessapps.trackr.dialogs.DialogProfile
-import com.pointlessapps.trackr.fragments.FragmentCalendar
-import com.pointlessapps.trackr.fragments.FragmentHome
-import com.pointlessapps.trackr.fragments.FragmentInsights
-import com.pointlessapps.trackr.managers.FragmentManager
 import com.pointlessapps.trackr.viewModels.ViewModelMain
 
 class ActivityMain : AppCompatActivity() {
 
 	private val viewModel by viewModels<ViewModelMain>()
-	private lateinit var fragmentManager: FragmentManager
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
 		val binding = ActivityMainBinding.inflate(layoutInflater)
+//		AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+//		delegate.applyDayNight()
 		setContentView(binding.root)
 
 		prepareNavigation(binding)
@@ -27,17 +27,14 @@ class ActivityMain : AppCompatActivity() {
 	}
 
 	private fun prepareNavigation(binding: ActivityMainBinding) {
-		fragmentManager = FragmentManager.of(
-			supportFragmentManager,
-			binding.navigationBottom,
-			FragmentInsights(),
-			FragmentHome(),
-			FragmentCalendar()
-		)
+		val navController = findNavController(R.id.containerFragment)
+		binding.navigationBottom.setupWithNavController(navController)
+		binding.navigationBottom.setOnNavigationItemSelectedListener itemSelectedListener@{
+			if (it.itemId == R.id.home) {
+				return@itemSelectedListener navController.navigateUp()
+			}
 
-		with(fragmentManager) {
-			showIn(R.id.containerFragment)
-			selectMiddle()
+			return@itemSelectedListener NavigationUI.onNavDestinationSelected(it, navController)
 		}
 	}
 
@@ -46,12 +43,6 @@ class ActivityMain : AppCompatActivity() {
 			DialogProfile(this).show().setOnLogoutClickListener {
 
 			}
-		}
-	}
-
-	override fun onBackPressed() {
-		if (!fragmentManager.popHistory()) {
-			super.onBackPressed()
 		}
 	}
 }

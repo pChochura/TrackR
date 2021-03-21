@@ -22,11 +22,6 @@
 		app:fontFamily="@font/montserrat_bold"
 		tools:text="Title" />
 
-	<View
-		android:layout_width="match_parent"
-		android:layout_height="1dp"
-		android:background="?colorSecondaryVariant" />
-
 	<androidx.appcompat.widget.AppCompatTextView
 		android:id="@+id/textContent"
 		android:layout_width="wrap_content"
@@ -37,11 +32,6 @@
 		android:textSize="14sp"
 		app:fontFamily="@font/montserrat"
 		tools:text="Some long content" />
-
-	<View
-		android:layout_width="match_parent"
-		android:layout_height="1dp"
-		android:background="?colorSecondaryVariant" />
 
 	<androidx.appcompat.widget.LinearLayoutCompat
 		android:layout_width="wrap_content"
@@ -64,10 +54,10 @@
 			style="@style/MaterialButton"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:fontFamily="@font/montserrat_bold"
 			android:paddingHorizontal="20dp"
 			android:text="@string/confirm"
-			android:textColor="?android:textColorPrimary" />
+			android:textColor="?android:textColorPrimary"
+			app:fontFamily="@font/montserrat_bold" />
 
 	</androidx.appcompat.widget.LinearLayoutCompat>
 

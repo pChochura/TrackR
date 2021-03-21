@@ -1,14 +1,31 @@
 package com.pointlessapps.trackr.adapters
 
 import androidx.lifecycle.MutableLiveData
+import androidx.viewbinding.ViewBinding
 import com.pointlessapps.trackr.databinding.ItemIconBinding
+import com.pointlessapps.trackr.utils.InflateMethod
 
 class AdapterIcons(list: List<Int>) :
-	AdapterSimple<Int, ItemIconBinding>(MutableLiveData(list), ItemIconBinding::inflate) {
+	AdapterCore<Int>(MutableLiveData(list), viewTypeContainer) {
 
-	override fun onBind(root: ItemIconBinding, item: Int) {
-		root.root.setImageResource(item)
-		root.root.setOnClickListener {
+	init {
+		setHasStableIds(true)
+	}
+
+	companion object {
+		val viewTypeContainer = object : AdapterCore.ViewTypeContainer() {
+			override fun getInflateMethodByNumber(viewType: Int): InflateMethod<ViewBinding> =
+				ItemIconBinding::inflate
+		}
+	}
+
+	override fun onBind(binding: ViewBinding, item: Int?) {
+		if (binding !is ItemIconBinding || item == null) {
+			return
+		}
+
+		binding.root.setImageResource(item)
+		binding.root.setOnClickListener {
 			onClickListener?.invoke(item)
 		}
 	}

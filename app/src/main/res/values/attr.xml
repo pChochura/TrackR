@@ -1,4 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 	<attr name="colorPrimaryTranslucent" format="color" />
+
+	<declare-styleable name="CalendarView">
+		<attr name="android:textSize" format="dimension" />
+		<attr name="android:textColorPrimary" format="color" />
+		<attr name="android:textColorSecondary" format="color" />
+		<attr name="android:colorAccent" format="color" />
+		<attr name="android:rowHeight" format="dimension" />
+		<attr name="android:fontFamily" format="reference" />
+	</declare-styleable>
 </resources>

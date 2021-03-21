@@ -44,8 +44,7 @@
 					android:padding="32dp"
 					android:scaleType="centerCrop"
 					android:src="@drawable/ic_home"
-					android:textColor="?android:textColorPrimary"
-					android:textColorHint="?colorSecondaryVariant" />
+					app:tint="?colorPrimary" />
 
 				<androidx.appcompat.widget.AppCompatTextView
 					android:layout_width="wrap_content"
@@ -145,21 +144,38 @@
 					android:textColor="?android:textColorSecondary"
 					android:textSize="12sp" />
 
-				<com.google.android.material.button.MaterialButton
-					android:id="@+id/buttonSalary"
-					style="@style/MaterialButton"
+				<androidx.appcompat.widget.LinearLayoutCompat
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
-					android:paddingHorizontal="@dimen/default_padding"
-					android:paddingVertical="@dimen/small_padding"
-					android:paddingLeft="20dp"
-					android:paddingRight="20dp"
-					android:textColor="?android:textColorPrimary"
-					android:textColorHint="?colorSecondaryVariant"
-					app:cornerRadius="4dp"
-					app:strokeColor="?colorSecondaryVariant"
-					app:strokeWidth="1dp"
-					tools:text="Ask me every time" />
+					android:gravity="end"
+					android:orientation="vertical">
+
+					<com.google.android.material.button.MaterialButton
+						android:id="@+id/buttonSalary"
+						style="@style/MaterialButton"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:paddingHorizontal="@dimen/default_padding"
+						android:paddingVertical="@dimen/small_padding"
+						android:paddingLeft="20dp"
+						android:paddingRight="20dp"
+						android:textColor="?android:textColorPrimary"
+						android:textColorHint="?colorSecondaryVariant"
+						app:cornerRadius="4dp"
+						app:strokeColor="?colorSecondaryVariant"
+						app:strokeWidth="1dp"
+						tools:text="Ask me every time" />
+
+					<androidx.appcompat.widget.AppCompatTextView
+						android:id="@+id/buttonSalaryErrorLabel"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text="@string/have_to_be_set_to_per_occurrence"
+						android:textColor="@color/red"
+						android:textSize="12sp"
+						android:visibility="gone" />
+
+				</androidx.appcompat.widget.LinearLayoutCompat>
 
 			</androidx.appcompat.widget.LinearLayoutCompat>
 

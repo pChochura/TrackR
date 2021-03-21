@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:id="@+id/bottomNavigation"
+	app:startDestination="@id/home">
+
+	<fragment
+		android:id="@+id/insights"
+		android:name="com.pointlessapps.trackr.fragments.FragmentInsights"
+		android:label="@string/insights"
+		tools:layout="@layout/fragment_insights" />
+
+	<fragment
+		android:id="@+id/home"
+		android:name="com.pointlessapps.trackr.fragments.FragmentHome"
+		android:label="@string/home"
+		tools:layout="@layout/fragment_home" />
+
+	<fragment
+		android:id="@+id/calendar"
+		android:name="com.pointlessapps.trackr.fragments.FragmentCalendar"
+		android:label="@string/calendar"
+		tools:layout="@layout/fragment_calendar" />
+
+</navigation>

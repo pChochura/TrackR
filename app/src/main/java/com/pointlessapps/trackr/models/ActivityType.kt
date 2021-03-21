@@ -18,8 +18,8 @@ sealed class ActivityType(
 	@Serializable
 	@SerialName("OneTime")
 	class OneTime : ActivityType(R.string.one_time, R.string.one_time_description) {
-		override fun getSubtitle(context: Context) = context.getString(R.string.one_time)
 		override fun isComplete() = true
+		override fun getSubtitle(context: Context) = context.getString(R.string.one_time)
 	}
 
 	@Parcelize
@@ -47,7 +47,7 @@ sealed class ActivityType(
 		override fun getSubtitle(context: Context) = when (range) {
 			null -> context.getString(R.string.ask_me_every_time)
 			else -> context.getString(
-				R.string.time_range,
+				R.string.time_range_formatted,
 				range!!.startTime.hours,
 				range!!.startTime.minutes,
 				range!!.endTime.hours,

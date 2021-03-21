@@ -6,7 +6,8 @@
 	android:layout_width="match_parent"
 	android:layout_height="96dp"
 	android:background="@drawable/background_rounded"
-	android:backgroundTint="?colorSecondaryVariant">
+	android:backgroundTint="?colorSecondaryVariant"
+	android:outlineProvider="background">
 
 	<androidx.constraintlayout.widget.ConstraintLayout
 		android:id="@+id/containerClickable"

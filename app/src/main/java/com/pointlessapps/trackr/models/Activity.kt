@@ -7,12 +7,14 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import kotlinx.parcelize.Parcelize
+import kotlinx.serialization.Serializable
 import java.util.*
 
 @Parcelize
 @Entity(tableName = "table_activity")
+@Serializable
 class Activity(
-	@PrimaryKey @ColumnInfo(name = "id") val id: Int = UUID.randomUUID().hashCode(),
+	@PrimaryKey @ColumnInfo(name = "id") val id: String = UUID.randomUUID().toString(),
 	@ColumnInfo(name = "name") var name: String = "",
 	@ColumnInfo(name = "color") @ColorInt var color: Int = 0,
 	@ColumnInfo(name = "icon") @DrawableRes var icon: Int = 0,

@@ -5,6 +5,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.pointlessapps.trackr.models.Activity
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface DaoActivity {
@@ -13,5 +14,5 @@ interface DaoActivity {
 	suspend fun insert(vararg item: Activity)
 
 	@Query("SELECT * FROM table_activity")
-	suspend fun getAll(): List<Activity>
+	fun getAll(): Flow<List<Activity>>
 }
