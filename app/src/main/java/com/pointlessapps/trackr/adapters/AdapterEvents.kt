@@ -3,6 +3,7 @@ package com.pointlessapps.trackr.adapters
 import android.content.res.ColorStateList
 import androidx.core.view.isVisible
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.viewbinding.ViewBinding
 import com.google.android.material.color.MaterialColors
 import com.pointlessapps.trackr.R
@@ -13,7 +14,7 @@ import com.pointlessapps.trackr.utils.getIncome
 import com.pointlessapps.trackr.utils.isNightMode
 
 class AdapterEvents(list: LiveData<List<Event>>) :
-	AdapterCore<Event>(list, viewTypeContainer) {
+	AdapterCore<Event>(list as MutableLiveData<List<Event>>, viewTypeContainer) {
 
 	init {
 		setHasStableIds(true)

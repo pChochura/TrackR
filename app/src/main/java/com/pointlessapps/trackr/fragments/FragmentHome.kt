@@ -21,6 +21,7 @@ import com.pointlessapps.trackr.models.Activity
 import com.pointlessapps.trackr.models.Event
 import com.pointlessapps.trackr.utils.GridItemSpacingDecoration
 import com.pointlessapps.trackr.utils.ItemSpacingDecoration
+import com.pointlessapps.trackr.utils.removeItemDecorations
 import com.pointlessapps.trackr.viewModels.ViewModelHome
 import java.util.*
 
@@ -73,12 +74,13 @@ class FragmentHome : FragmentCore<FragmentHomeBinding>(FragmentHomeBinding::infl
 							override fun canScrollVertically() = false
 						}
 				}
+				removeItemDecorations()
 				addItemDecoration(GridItemSpacingDecoration(2))
 			}
 		}
 
 		with(root.listAllActivities) {
-			adapter = AdapterAllActivities(viewModel.getAllActivities()).apply {
+			adapter = AdapterAllActivities(viewModel.allActivities).apply {
 				onAddClickListener = { onAddActivityClicked() }
 				onClickListener = { onActivityClicked(it) }
 				onMoreClickListener = { onActivityClicked(it, true) }
@@ -91,7 +93,9 @@ class FragmentHome : FragmentCore<FragmentHomeBinding>(FragmentHomeBinding::infl
 	}
 
 	private fun onShowEditFavouritesClicked() {
-		DialogSelectFavourites(requireActivity())
+		DialogSelectFavourites(requireActivity(), viewModel.allActivities.value!!)
+			.setOnPickedListener(viewModel::setActivitiesWithFavouriteState)
+			.show()
 	}
 
 	private fun onAddActivityClicked() {

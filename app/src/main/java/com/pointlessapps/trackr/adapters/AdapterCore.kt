@@ -3,12 +3,13 @@ package com.pointlessapps.trackr.adapters
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
 import com.pointlessapps.trackr.utils.InflateMethod
 
 abstract class AdapterCore<ItemType>(
-	protected val items: LiveData<List<ItemType>>,
+	protected val items: MutableLiveData<List<ItemType>>,
 	private val viewTypeContainer: ViewTypeContainer
 ) : RecyclerView.Adapter<AdapterCore<ItemType>.ViewHolder>() {
 

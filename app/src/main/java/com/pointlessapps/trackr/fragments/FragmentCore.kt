@@ -12,9 +12,6 @@ import com.pointlessapps.trackr.utils.InflateMethod
 abstract class FragmentCore<Binding : ViewBinding>(private val inflateMethod: InflateMethod<Binding>) :
 	Fragment() {
 
-	var forcePopBackStack: (() -> Unit)? = null
-	var forceChangeFragment: ((FragmentCore<*>) -> Unit)? = null
-
 	abstract fun created()
 	open fun refreshed() = Unit
 

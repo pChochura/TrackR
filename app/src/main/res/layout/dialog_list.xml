@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="320dp"
+	android:layout_height="wrap_content"
+	android:background="@drawable/background_rounded"
+	android:backgroundTint="?colorPrimary"
+	android:gravity="center_horizontal"
+	android:orientation="vertical"
+	android:padding="@dimen/default_padding"
+	app:divider="@drawable/divider_vertical_10dp"
+	app:showDividers="middle">
+
+	<androidx.appcompat.widget.AppCompatTextView
+		android:id="@+id/textTitle"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:textColor="?android:textColorPrimary"
+		android:textSize="18sp"
+		app:fontFamily="@font/montserrat_bold"
+		tools:text="Title" />
+
+	<androidx.appcompat.widget.AppCompatTextView
+		android:id="@+id/textSubtitle"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:textColor="?android:textColorSecondary"
+		android:textSize="14sp"
+		app:fontFamily="@font/montserrat"
+		tools:text="Some long subtitle" />
+
+	<FrameLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content">
+
+		<androidx.recyclerview.widget.RecyclerView
+			android:id="@+id/listItems"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:alpha="0.3"
+			android:clickable="false"
+			app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+			tools:itemCount="3"
+			tools:listitem="@layout/item_select_favourite" />
+
+		<com.google.android.material.progressindicator.CircularProgressIndicator
+			android:id="@+id/progress"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center"
+			android:indeterminateOnly="true"
+			app:indicatorColor="?colorAccent" />
+
+	</FrameLayout>
+
+	<com.google.android.material.button.MaterialButton
+		android:id="@+id/buttonSave"
+		style="@style/MaterialButton"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_gravity="end"
+		android:paddingHorizontal="20dp"
+		android:text="@string/save"
+		android:textColor="?android:textColorPrimary"
+		app:fontFamily="@font/montserrat_bold" />
+
+</androidx.appcompat.widget.LinearLayoutCompat>

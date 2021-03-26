@@ -2,6 +2,7 @@ package com.pointlessapps.trackr.adapters
 
 import android.content.res.ColorStateList
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.viewbinding.ViewBinding
 import com.google.android.material.color.MaterialColors
 import com.pointlessapps.trackr.R
@@ -13,7 +14,7 @@ import com.pointlessapps.trackr.utils.InflateMethod
 import com.pointlessapps.trackr.utils.isNightMode
 
 class AdapterFavourites(list: LiveData<List<Activity>>) :
-	AdapterCore<Activity>(list, viewTypeContainer) {
+	AdapterCore<Activity>(list as MutableLiveData<List<Activity>>, viewTypeContainer) {
 
 	init {
 		setHasStableIds(true)

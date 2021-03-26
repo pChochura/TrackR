@@ -84,4 +84,5 @@
 	<string name="or_hide_section">Or hide section</string>
 	<string name="are_you_sure">Are you sure?</string>
 	<string name="hide_favourites_section_description">Do you really want to hide this section? You always can show it again from the settings.</string>
+	<string name="drag_and_drop_to_rearrange">Drag and drop to rearrange</string>
 </resources>

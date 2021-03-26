@@ -1,39 +1,60 @@
 package com.pointlessapps.trackr.dialogs
 
 import android.app.Activity
-import com.google.android.material.color.MaterialColors
+import androidx.core.view.isVisible
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.map
+import androidx.recyclerview.widget.ItemTouchHelper
+import com.pointlessapps.trackr.App
 import com.pointlessapps.trackr.R
 import com.pointlessapps.trackr.adapters.AdapterSelectFavourites
-import com.pointlessapps.trackr.databinding.DialogPickFromListBinding
+import com.pointlessapps.trackr.databinding.DialogListBinding
+import com.pointlessapps.trackr.helpers.DragItemTouchHelper
+import kotlinx.coroutines.*
 
 class DialogSelectFavourites(
 	activity: Activity,
 	activities: List<com.pointlessapps.trackr.models.Activity>
-) : DialogCore<DialogPickFromListBinding>(activity, DialogPickFromListBinding::inflate) {
+) : DialogCore<DialogListBinding>(activity, DialogListBinding::inflate) {
 
-	private var onSavedListener: ((Map<String, Boolean>) -> Unit)? = null
-	private val favourites = activities.associateWith { false }.toMutableMap()
+	private val appPreferencesRepository = (activity.application as App).appPreferencesRepository
+	private var onSavedListener: ((List<Pair<String, Boolean>>) -> Unit)? = null
+	private val favourites =
+		MutableLiveData(activities.map { SelectedActivity(it, false) }.toMutableList())
 
 	override fun show(): DialogSelectFavourites {
 		makeDialog { binding, dialog ->
-			binding.textTitle.setText(R.string.select_activity_type)
-			binding.buttonCancel.setText(R.string.save)
-			binding.buttonCancel.setTextColor(
-				MaterialColors.getColor(
-					binding.buttonCancel,
-					android.R.attr.textColorPrimary
-				)
-			)
-			binding.buttonCancel.setOnClickListener {
-				onSavedListener?.invoke(favourites.mapKeys { it.key.id })
+			binding.textTitle.setText(R.string.favourites)
+			binding.textSubtitle.setText(R.string.drag_and_drop_to_rearrange)
+			binding.buttonSave.setOnClickListener {
+				onSavedListener?.invoke(favourites.value!!.map { it.activity.id to it.selected })
 				dialog.dismiss()
 			}
 			with(binding.listItems) {
-				adapter = AdapterSelectFavourites(favourites).apply {
-					onItemSelected = { activity, selected ->
-						favourites[activity] = selected
-						notifyDataSetChanged()
+				adapter = AdapterSelectFavourites(favourites.map { it.toList() }).apply {
+					onItemSelected = { activity ->
+						activity.selected = !activity.selected
+						favourites.value = favourites.value
 					}
+				}
+				ItemTouchHelper(DragItemTouchHelper(ItemTouchHelper.UP or ItemTouchHelper.DOWN) { _, from, to ->
+					favourites.value = favourites.value?.also {
+						val temp = it[from]
+						it[from] = it[to]
+						it[to] = temp
+					}
+				}).attachToRecyclerView(this)
+			}
+
+			CoroutineScope(Job()).launch {
+				val favourites = favourites.value ?: return@launch
+				appPreferencesRepository.getFavouritesIds().forEach { id ->
+					favourites.find { it.activity.id == id }?.selected = true
+				}
+				this@DialogSelectFavourites.favourites.postValue(favourites)
+				withContext(Dispatchers.IO) {
+					binding.progress.isVisible = false
+					binding.listItems.alpha = 1f
 				}
 			}
 		}
@@ -41,9 +62,14 @@ class DialogSelectFavourites(
 		return this
 	}
 
-	fun setOnPickedListener(onSavedListener: (Map<String, Boolean>) -> Unit): DialogSelectFavourites {
+	fun setOnPickedListener(onSavedListener: (List<Pair<String, Boolean>>) -> Unit): DialogSelectFavourites {
 		this.onSavedListener = onSavedListener
 
 		return this
 	}
+
+	inner class SelectedActivity(
+		val activity: com.pointlessapps.trackr.models.Activity,
+		var selected: Boolean
+	)
 }

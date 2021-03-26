@@ -2,9 +2,9 @@ package com.pointlessapps.trackr.viewModels
 
 import android.app.Application
 import androidx.lifecycle.*
+import com.pointlessapps.trackr.App
 import com.pointlessapps.trackr.models.Activity
 import com.pointlessapps.trackr.models.Event
-import com.pointlessapps.trackr.repositories.AppPreferencesRepository
 import com.pointlessapps.trackr.repositories.Repository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.map
@@ -13,24 +13,28 @@ import kotlinx.coroutines.launch
 class ViewModelHome(application: Application) : AndroidViewModel(application) {
 
 	private val repository = Repository(application)
-	private val prefs = AppPreferencesRepository(viewModelScope, application)
+	private val prefs = (application as App).appPreferencesRepository
 	private val _isLoading = MutableLiveData(true)
 	val isLoading: LiveData<Boolean>
 		get() = _isLoading
 
 	val isFavouriteSectionHidden = prefs.isFavouriteSectionHidden().asLiveData()
 
-	fun getAllActivities() = liveData {
-		_isLoading.postValue(true)
-		emitSource(repository.getAllActivities().asLiveData())
-		_isLoading.postValue(false)
+	val allActivities by lazy {
+		liveData {
+			_isLoading.postValue(true)
+			emitSource(repository.getAllActivities().asLiveData())
+			_isLoading.postValue(false)
+		}
 	}
 
 	fun getFavourites() = liveData {
 		_isLoading.postValue(true)
 		emitSource(
 			repository.getAllActivities().map { list ->
-				list.filter { prefs.isActivityIdInFavourites(it.id) }
+				prefs.getFavouritesIds().mapNotNull { id ->
+					list.find { it.id == id }
+				}
 			}.asLiveData()
 		)
 		_isLoading.postValue(false)
@@ -66,9 +70,9 @@ class ViewModelHome(application: Application) : AndroidViewModel(application) {
 		}
 	}
 
-	fun getActivitiesWithFavouriteState() {
+	fun setActivitiesWithFavouriteState(favourites: List<Pair<String, Boolean>>) {
 		viewModelScope.launch(Dispatchers.IO) {
-			prefs.getFavouritesIds()//TODO finish this!
+			prefs.setFavouritesIds(favourites.filter { it.second }.map { it.first })
 		}
 	}
 }
