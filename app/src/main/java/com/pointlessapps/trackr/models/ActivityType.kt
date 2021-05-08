@@ -14,16 +14,16 @@ sealed class ActivityType(
 	@StringRes private val descriptionResId: Int = 0
 ) : Parcelable {
 
-	@Parcelize
 	@Serializable
+	@Parcelize
 	@SerialName("OneTime")
 	class OneTime : ActivityType(R.string.one_time, R.string.one_time_description) {
 		override fun isComplete() = true
 		override fun getSubtitle(context: Context) = context.getString(R.string.one_time)
 	}
 
-	@Parcelize
 	@Serializable
+	@Parcelize
 	@SerialName("PeriodBased")
 	class PeriodBased(var period: TimePeriod? = null) :
 		ActivityType(R.string.period_based, R.string.period_based_description) {
@@ -38,8 +38,8 @@ sealed class ActivityType(
 		}
 	}
 
-	@Parcelize
 	@Serializable
+	@Parcelize
 	@SerialName("TimeBased")
 	class TimeBased(var range: TimeRange? = null) :
 		ActivityType(R.string.time_based, R.string.time_based_description) {

@@ -85,4 +85,12 @@
 	<string name="are_you_sure">Are you sure?</string>
 	<string name="hide_favourites_section_description">Do you really want to hide this section? You always can show it again from the settings.</string>
 	<string name="drag_and_drop_to_rearrange">Drag and drop to rearrange</string>
+	<string name="log_out">Log out</string>
+	<string name="log_in_with_google">Log in with Google</string>
+	<string name="unlock_features_like_cloud_synchronization">Unlock features like cloud synchronization</string>
+	<string name="log_in">Log in</string>
+	<string name="automatically_synchronize">Automatically synchronize</string>
+	<string name="add_an_activity_first">You have to add an activity first.</string>
+	<string name="no_activities">No activities</string>
+	<string name="ok">OK</string>
 </resources>

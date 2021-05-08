@@ -18,6 +18,7 @@ import androidx.core.animation.doOnEnd
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.content.withStyledAttributes
 import androidx.core.view.NestedScrollingChild
+import androidx.core.view.NestedScrollingChild3
 import androidx.core.view.ViewCompat
 import androidx.lifecycle.MutableLiveData
 import com.google.android.material.color.MaterialColors
@@ -54,6 +55,7 @@ class CalendarView(context: Context, attrs: AttributeSet?, defStyleAttr: Int) :
 				velocityX: Float,
 				velocityY: Float
 			) = true
+
 			override fun onSingleTapUp(e: MotionEvent): Boolean {
 				if (e.x > paddingLeft && e.x < 7 * columnWidth + paddingLeft && e.y > headerPaddingVertical * 2 + textHeight + paddingTop) {
 					val x = ((e.x - paddingLeft) / columnWidth).toInt()
@@ -129,7 +131,7 @@ class CalendarView(context: Context, attrs: AttributeSet?, defStyleAttr: Int) :
 	private val headerLabels = (0..6).map {
 		resources.getString(
 			resources.getIdentifier("weekday_${it}_abbrev", "string", context.packageName)
-		).toUpperCase(Locale.getDefault())
+		).uppercase(Locale.getDefault())
 	}
 
 	private val eventsObserver: (List<Event>) -> Unit = { list ->
@@ -157,6 +159,7 @@ class CalendarView(context: Context, attrs: AttributeSet?, defStyleAttr: Int) :
 	}
 
 	init {
+		isNestedScrollingEnabled = true
 		context.withStyledAttributes(attrs, R.styleable.CalendarView, defStyleAttr) {
 			textSize = getDimension(R.styleable.CalendarView_android_textSize, 12f.toSp())
 			rowHeight = getDimension(R.styleable.CalendarView_android_rowHeight, 0f).toInt()
@@ -295,20 +298,35 @@ class CalendarView(context: Context, attrs: AttributeSet?, defStyleAttr: Int) :
 		}
 
 		val dotSize = 4f.toDp()
-		val count = events.size
+		val count = events.size.coerceAtMost(3)
+		val isMoreThanMax = events.size > count
 		val offset = (count - 1) * 0.75f * dotSize
-		events.forEachIndexed { index, event ->
+		events.take(count).forEachIndexed { index, event ->
 			val dotPosX = -offset + index * 1.5f * dotSize
 			val dotPosY = rowHeight.toFloat() * 0.5f - dotSize * 3
-			paint.color = when (currentMonth) {
-				true -> event.color
-				false -> MaterialColors.compositeARGBWithAlpha(
-					event.color,
-					(0.4 * 255).toInt()
+			if (isMoreThanMax && index == count - 1) {
+				paint.style = Paint.Style.STROKE
+				paint.color = textColorPrimary
+				canvas.drawLines(
+					floatArrayOf(
+						x + dotPosX - dotSize * 0.5f, y + dotPosY,
+						x + dotPosX + dotSize * 0.5f, y + dotPosY,
+						x + dotPosX, y + dotPosY - dotSize * 0.5f,
+						x + dotPosX, y + dotPosY + dotSize * 0.5f,
+					), paint
 				)
+			} else {
+				paint.color = when (currentMonth) {
+					true -> event.color
+					false -> MaterialColors.compositeARGBWithAlpha(
+						event.color,
+						(0.4 * 255).toInt()
+					)
+				}
+				canvas.drawCircle(x + dotPosX, y + dotPosY, dotSize * 0.5f, paint)
 			}
-			canvas.drawCircle(x + dotPosX, y + dotPosY, dotSize * 0.5f, paint)
 		}
+		paint.style = Paint.Style.FILL
 	}
 
 	private fun onDrawDays(canvas: Canvas, monthOffset: Int = 0) {
@@ -319,8 +337,9 @@ class CalendarView(context: Context, attrs: AttributeSet?, defStyleAttr: Int) :
 			add(Calendar.DAY_OF_MONTH, -(get(Calendar.DAY_OF_WEEK) + 7 - Calendar.MONDAY) % 7)
 			(0..6).forEach { column ->
 				(0..5).forEach { row ->
-					val isDaySelected = selectedDay.get(Calendar.DAY_OF_YEAR) == get(Calendar.DAY_OF_YEAR) &&
-							selectedDay.get(Calendar.YEAR) == get(Calendar.YEAR)
+					val isDaySelected =
+						selectedDay.get(Calendar.DAY_OF_YEAR) == get(Calendar.DAY_OF_YEAR) &&
+								selectedDay.get(Calendar.YEAR) == get(Calendar.YEAR)
 					textPaint.color = when {
 						isDaySelected -> Color.WHITE
 						currentMonthInt == get(Calendar.MONTH) -> textColorPrimary

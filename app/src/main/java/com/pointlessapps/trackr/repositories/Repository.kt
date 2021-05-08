@@ -1,28 +1,25 @@
 package com.pointlessapps.trackr.repositories
 
-import android.content.Context
-import com.pointlessapps.trackr.db.AppDatabase
 import com.pointlessapps.trackr.models.Activity
 import com.pointlessapps.trackr.models.Event
+import com.pointlessapps.trackr.services.ServiceFirebase
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.emitAll
 import kotlinx.coroutines.flow.flow
 
-class Repository(context: Context) {
+class Repository {
 
-	private val daoActivity = AppDatabase.init(context).daoActivity()
-	private val daoEvent = AppDatabase.init(context).daoEvent()
-
-	suspend fun insertActivity(activity: Activity) = daoActivity.insert(activity)
-	suspend fun insertEvent(event: Event) = daoEvent.insert(event)
-	suspend fun removeEvent(event: Event) = daoEvent.remove(event)
-	suspend fun removeEventById(eventId: String) = daoEvent.removeById(eventId)
+	suspend fun insertActivity(activity: Activity) = ServiceFirebase.insertActivity(activity)
+	suspend fun insertEvent(event: Event) = ServiceFirebase.insertEvent(event)
+	fun removeEventById(eventId: String) = ServiceFirebase.removeEventById(eventId)
 
 	fun getAllActivities(): Flow<List<Activity>> = flow {
-		emitAll(daoActivity.getAll())
+		emit(emptyList())
+		emitAll(ServiceFirebase.getAllActivities())
 	}
 
 	fun getEventsBetween(startTime: Long, endTime: Long): Flow<List<Event>> = flow {
-		emitAll(daoEvent.getBetween(startTime, endTime))
+		emit(emptyList())
+		emitAll(ServiceFirebase.getEventsBetween(startTime, endTime))
 	}
 }

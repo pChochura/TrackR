@@ -6,6 +6,7 @@
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
 	android:clipToPadding="false"
+	android:descendantFocusability="afterDescendants"
 	android:paddingBottom="@dimen/bottom_padding">
 
 	<androidx.appcompat.widget.LinearLayoutCompat
@@ -18,7 +19,6 @@
 		<androidx.appcompat.widget.LinearLayoutCompat
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:animateLayoutChanges="true"
 			android:orientation="horizontal">
 
 			<androidx.appcompat.widget.AppCompatTextView
@@ -50,6 +50,7 @@
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:background="?selectableItemBackground"
+			android:focusable="true"
 			android:rowHeight="32dp"
 			android:textColorSecondary="?colorSecondaryVariant"
 			app:fontFamily="@font/montserrat" />
@@ -58,7 +59,10 @@
 			android:id="@+id/listEvents"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:padding="@dimen/default_padding"
+			android:clipToPadding="false"
+			android:paddingHorizontal="@dimen/default_padding"
+			android:paddingTop="@dimen/default_padding"
+			android:paddingBottom="@dimen/bottom_padding"
 			app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
 			tools:itemCount="4"
 			tools:listitem="@layout/item_event_card" />

@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "250483498157",
+    "project_id": "trackr-fe501",
+    "storage_bucket": "trackr-fe501.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:250483498157:android:9fc2def99389a2eab97a24",
+        "android_client_info": {
+          "package_name": "com.pointlessapps.trackr"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "250483498157-5klvhl71lgp2tfl87ntk0j70gv9700de.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.pointlessapps.trackr",
+            "certificate_hash": "300a03cf5360cf4c5c5cfe796a7844ca288336b9"
+          }
+        },
+        {
+          "client_id": "250483498157-s3ot6oeavv11rsl0cmpbvt1i5197p3ro.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyArJwOilHJyxt74hs7z63uEWwWe8VCwvRY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "250483498157-s3ot6oeavv11rsl0cmpbvt1i5197p3ro.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

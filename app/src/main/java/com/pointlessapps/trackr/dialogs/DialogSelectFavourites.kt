@@ -47,9 +47,13 @@ class DialogSelectFavourites(
 			}
 
 			CoroutineScope(Job()).launch {
-				val favourites = favourites.value ?: return@launch
-				appPreferencesRepository.getFavouritesIds().forEach { id ->
-					favourites.find { it.activity.id == id }?.selected = true
+				val favourites = favourites.value?.toMutableList() ?: return@launch
+				appPreferencesRepository.getFavouritesIds().reversed().forEach { id ->
+					favourites.find { it.activity.id == id }?.also {
+						it.selected = true
+						favourites.remove(it)
+						favourites.add(0, it)
+					}
 				}
 				this@DialogSelectFavourites.favourites.postValue(favourites)
 				withContext(Dispatchers.IO) {

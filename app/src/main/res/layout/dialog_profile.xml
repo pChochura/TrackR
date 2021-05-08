@@ -1,7 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<androidx.appcompat.widget.LinearLayoutCompat
 	xmlns:android="http://schemas.android.com/apk/res/android"
-	android:layout_width="match_parent"
-	android:layout_height="match_parent">
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="320dp"
+	android:layout_height="wrap_content"
+	android:background="@drawable/background_rounded"
+	android:backgroundTint="?colorPrimary"
+	android:gravity="center_horizontal"
+	android:orientation="vertical"
+	android:padding="@dimen/default_padding"
+	app:divider="@drawable/divider_vertical_10dp"
+	app:showDividers="middle">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+	<androidx.appcompat.widget.AppCompatImageView
+		android:id="@+id/imageIcon"
+		android:layout_width="32dp"
+		android:layout_height="32dp"
+		android:background="@drawable/background_circle"
+		android:backgroundTint="?colorAccent"
+		android:padding="4dp"
+		app:srcCompat="@drawable/ic_person" />
+
+	<androidx.appcompat.widget.AppCompatTextView
+		android:id="@+id/textTitle"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:textColor="?android:textColorPrimary"
+		android:textSize="18sp"
+		app:fontFamily="@font/montserrat_bold"
+		tools:text="Log in" />
+
+	<androidx.appcompat.widget.AppCompatTextView
+		android:id="@+id/textSubtitle"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:gravity="center"
+		android:text="@string/unlock_features_like_cloud_synchronization"
+		android:textColor="?android:textColorSecondary"
+		android:textSize="14sp"
+		app:fontFamily="@font/montserrat" />
+
+	<androidx.appcompat.widget.LinearLayoutCompat
+		android:id="@+id/containerSettings"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:orientation="vertical"
+		app:divider="@drawable/divider_vertical_10dp"
+		app:showDividers="middle">
+
+		<View
+			android:layout_width="match_parent"
+			android:layout_height="1dp"
+			android:background="?colorSecondaryVariant" />
+
+		<com.google.android.material.switchmaterial.SwitchMaterial
+			android:id="@+id/buttonAutomaticallySynchronize"
+			style="@style/MaterialSwitch"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:checked="false"
+			android:text="@string/automatically_synchronize" />
+
+	</androidx.appcompat.widget.LinearLayoutCompat>
+
+	<com.google.android.material.button.MaterialButton
+		android:id="@+id/buttonPrimary"
+		style="@style/MaterialButton"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:textColor="?android:textColorPrimary"
+		android:textSize="14sp"
+		app:icon="@mipmap/ic_google"
+		app:iconSize="24dp"
+		app:iconTint="@null"
+		tools:text="Log in with Google" />
+
+</androidx.appcompat.widget.LinearLayoutCompat>

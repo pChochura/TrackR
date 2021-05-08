@@ -12,6 +12,7 @@ import com.pointlessapps.trackr.databinding.ActivityAddActivityBinding
 import com.pointlessapps.trackr.dialogs.*
 import com.pointlessapps.trackr.models.*
 import com.pointlessapps.trackr.viewModels.ViewModelAddActivity
+import java.io.Serializable
 
 class ActivityAddActivity : AppCompatActivity() {
 

@@ -1,7 +1,7 @@
 package com.pointlessapps.trackr.fragments
 
 import androidx.core.view.isVisible
-import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.pointlessapps.trackr.adapters.AdapterEvents
@@ -18,21 +18,16 @@ import java.util.*
 class FragmentCalendar : FragmentCore<FragmentCalendarBinding>(FragmentCalendarBinding::inflate) {
 
 	private val monthFormat = SimpleDateFormat("MMMM yyyy", Locale.getDefault())
-	private val viewModel by activityViewModels<ViewModelCalendar>()
+	private val viewModel by viewModels<ViewModelCalendar>()
 
 	override fun created() {
 		prepareLoader()
 		prepareList()
-
-		refreshed()
-	}
-
-	override fun refreshed() {
 		prepareCalendar()
 	}
 
 	private fun prepareList() {
-		with(root.listEvents) {
+		with(binding.listEvents) {
 			adapter = AdapterEvents(viewModel.selectedEvents).apply {
 				onClickListener = { showEventDialog(it) }
 			}
@@ -51,13 +46,13 @@ class FragmentCalendar : FragmentCore<FragmentCalendarBinding>(FragmentCalendarB
 
 	private fun prepareLoader() {
 		viewModel.isLoading.observe(this) {
-			root.progress.isVisible = it
+			binding.progress.isVisible = it
 		}
 	}
 
 	private fun prepareCalendar() {
 		viewModel.events.observe(this) {
-			root.calendar.eventsLiveData.value = it.map { event ->
+			binding.calendar.eventsLiveData.value = it.map { event ->
 				CalendarView.Event(
 					event.activity.color,
 					event.date.time
@@ -65,13 +60,13 @@ class FragmentCalendar : FragmentCore<FragmentCalendarBinding>(FragmentCalendarB
 			}
 		}
 
-		root.calendar.daySelectedListener = { day ->
+		binding.calendar.daySelectedListener = { day ->
 			viewModel.selectedDay.value = day
 		}
-		root.calendar.monthScrollListener = { month ->
+		binding.calendar.monthScrollListener = { month ->
 			viewModel.displayedMonth.value =
 				YearMonth.of(month.get(Calendar.YEAR), month.get(Calendar.MONTH) + 1)
-			root.textDate.text = monthFormat.format(month.time)
+			binding.textDate.text = monthFormat.format(month.time)
 		}
 	}
 }

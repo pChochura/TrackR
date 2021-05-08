@@ -6,8 +6,8 @@ import kotlinx.parcelize.Parcelize
 import kotlinx.serialization.Serializable
 import java.util.*
 
-@Parcelize
 @Serializable
+@Parcelize
 class WeekdayAvailability(
 	private val availability: BooleanArray =
 		(0 until Calendar.getInstance().getMaximum(Calendar.DAY_OF_WEEK)).map { true }

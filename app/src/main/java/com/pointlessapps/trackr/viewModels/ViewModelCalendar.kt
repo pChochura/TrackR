@@ -12,7 +12,7 @@ import java.util.concurrent.TimeUnit
 
 class ViewModelCalendar(application: Application) : AndroidViewModel(application) {
 
-	private val repository = Repository(application)
+	private val repository = Repository()
 
 	val displayedMonth = MutableLiveData<YearMonth>()
 	val selectedDay = MutableLiveData<Calendar>()

@@ -2,6 +2,8 @@ package com.pointlessapps.trackr.viewModels
 
 import android.app.Application
 import androidx.lifecycle.*
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import com.pointlessapps.trackr.App
 import com.pointlessapps.trackr.models.Activity
 import com.pointlessapps.trackr.models.Event
@@ -12,7 +14,7 @@ import kotlinx.coroutines.launch
 
 class ViewModelHome(application: Application) : AndroidViewModel(application) {
 
-	private val repository = Repository(application)
+	private val repository = Repository()
 	private val prefs = (application as App).appPreferencesRepository
 	private val _isLoading = MutableLiveData(true)
 	val isLoading: LiveData<Boolean>
@@ -54,7 +56,7 @@ class ViewModelHome(application: Application) : AndroidViewModel(application) {
 
 	fun removeEventFromCalendar(event: Event) {
 		viewModelScope.launch(Dispatchers.IO) {
-			repository.removeEvent(event)
+			repository.removeEventById(event.id)
 		}
 	}
 

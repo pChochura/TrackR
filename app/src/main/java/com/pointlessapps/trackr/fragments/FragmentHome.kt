@@ -21,39 +21,45 @@ import com.pointlessapps.trackr.models.Activity
 import com.pointlessapps.trackr.models.Event
 import com.pointlessapps.trackr.utils.GridItemSpacingDecoration
 import com.pointlessapps.trackr.utils.ItemSpacingDecoration
-import com.pointlessapps.trackr.utils.removeItemDecorations
 import com.pointlessapps.trackr.viewModels.ViewModelHome
+import com.pointlessapps.trackr.viewModels.ViewModelMain
 import java.util.*
 
 class FragmentHome : FragmentCore<FragmentHomeBinding>(FragmentHomeBinding::inflate) {
 
+	private val mainViewModel by activityViewModels<ViewModelMain>()
 	private val viewModel by activityViewModels<ViewModelHome>()
 	private val launcher =
-		registerForActivityResult(ActivityResultContracts.StartActivityForResult()) activityResult@{
+		registerForActivityResult(ActivityResultContracts.StartActivityForResult()) result@{
 			if (it.resultCode != android.app.Activity.RESULT_OK) {
-				return@activityResult
+				return@result
 			}
 
 			val activity = it.data?.getParcelableExtra<Activity>(ActivityAddActivity.KEY_DATA)
-				?: return@activityResult
+				?: return@result
 
 			viewModel.addActivity(activity)
 		}
 
 	override fun created() {
 		viewModel.isLoading.observe(this) {
-			root.progress.isVisible = it
-			root.containerLists.isVisible = !it
+			binding.progress.isVisible = it
+			binding.containerLists.isVisible = !it
 		}
-		root.buttonEditFavourites.setOnClickListener { onShowEditFavouritesClicked() }
-		prepareLists()
+		binding.buttonEditFavourites.setOnClickListener { onShowEditFavouritesClicked() }
+
+		mainViewModel.isSignedIn.observe(this) { isSignedIn ->
+			if (isSignedIn) {
+				prepareLists()
+			}
+		}
 	}
 
 	private fun prepareLists() {
 		viewModel.isFavouriteSectionHidden.observe(this) { isHidden ->
-			root.containerFavourites.isGone = isHidden
+			binding.containerFavourites.isGone = isHidden
 
-			with(root.listFavourites) {
+			with(binding.listFavourites) {
 				adapter = AdapterFavourites(viewModel.getFavourites()).apply {
 					onClickListener = { onActivityClicked(it) }
 					onMoreClickListener = { onActivityClicked(it, true) }
@@ -74,12 +80,15 @@ class FragmentHome : FragmentCore<FragmentHomeBinding>(FragmentHomeBinding::infl
 							override fun canScrollVertically() = false
 						}
 				}
-				removeItemDecorations()
-				addItemDecoration(GridItemSpacingDecoration(2))
+				if (itemDecorationCount > 0) {
+					invalidateItemDecorations()
+				} else {
+					addItemDecoration(GridItemSpacingDecoration(2))
+				}
 			}
 		}
 
-		with(root.listAllActivities) {
+		with(binding.listAllActivities) {
 			adapter = AdapterAllActivities(viewModel.allActivities).apply {
 				onAddClickListener = { onAddActivityClicked() }
 				onClickListener = { onActivityClicked(it) }
@@ -93,6 +102,16 @@ class FragmentHome : FragmentCore<FragmentHomeBinding>(FragmentHomeBinding::infl
 	}
 
 	private fun onShowEditFavouritesClicked() {
+		if (viewModel.allActivities.value.isNullOrEmpty()) {
+			DialogMessage(
+				requireActivity(),
+				R.string.no_activities,
+				R.string.add_an_activity_first,
+				R.string.ok
+			).show()
+
+			return
+		}
 		DialogSelectFavourites(requireActivity(), viewModel.allActivities.value!!)
 			.setOnPickedListener(viewModel::setActivitiesWithFavouriteState)
 			.show()
@@ -121,7 +140,7 @@ class FragmentHome : FragmentCore<FragmentHomeBinding>(FragmentHomeBinding::infl
 	private fun addEventToCalendar(event: Event) {
 		viewModel.addEventToCalendar(event)
 		Snackbar.make(
-			root.root,
+			binding.root,
 			requireContext().getString(R.string.added_activity_to_calendar, event.activity.name),
 			Snackbar.LENGTH_LONG
 		).setAction(R.string.undo) {

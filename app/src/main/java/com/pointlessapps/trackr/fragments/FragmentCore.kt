@@ -12,34 +12,18 @@ import com.pointlessapps.trackr.utils.InflateMethod
 abstract class FragmentCore<Binding : ViewBinding>(private val inflateMethod: InflateMethod<Binding>) :
 	Fragment() {
 
+	protected lateinit var binding: Binding
+
 	abstract fun created()
-	open fun refreshed() = Unit
-
-	private var _root: Binding? = null
-	protected val root: Binding
-		get() = _root!!
-
-	private var forceRefresh = false
-		get() = field.also { field = false }
-
-	fun forceRefresh() {
-		forceRefresh = true
-	}
 
 	override fun onCreateView(
 		inflater: LayoutInflater,
 		container: ViewGroup?,
 		savedInstanceState: Bundle?
 	): View? {
-		if (_root == null || forceRefresh) {
-			_root = inflateMethod(inflater, container, false)
-
-			created()
-		} else {
-			refreshed()
-		}
-
-		return _root?.root
+		binding = inflateMethod(inflater, container, false)
+		created()
+		return binding.root
 	}
 
 	override fun onCreateAnimation(transit: Int, enter: Boolean, nextAnim: Int) =

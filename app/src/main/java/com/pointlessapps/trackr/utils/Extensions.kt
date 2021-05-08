@@ -30,9 +30,3 @@ fun Context.isNightMode() =
 	resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK != Configuration.UI_MODE_NIGHT_NO
 
 fun Event.getIncome() = ServiceIncomeCalculator.calculateIncomeForEvent(this)
-
-fun <T : RecyclerView> T.removeItemDecorations() {
-	while (itemDecorationCount > 0) {
-		removeItemDecorationAt(0)
-	}
-}
