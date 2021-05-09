@@ -3,11 +3,26 @@
 	<attr name="colorPrimaryTranslucent" format="color" />
 
 	<declare-styleable name="CalendarView">
-		<attr name="android:textSize" format="dimension" />
-		<attr name="android:textColorPrimary" format="color" />
-		<attr name="android:textColorSecondary" format="color" />
-		<attr name="android:colorAccent" format="color" />
-		<attr name="android:rowHeight" format="dimension" />
-		<attr name="android:fontFamily" format="reference" />
+		<attr name="android:textSize" />
+		<attr name="android:textColorPrimary" />
+		<attr name="android:textColorSecondary" />
+		<attr name="android:colorAccent" />
+		<attr name="android:rowHeight" />
+		<attr name="android:fontFamily" />
+	</declare-styleable>
+
+	<attr name="progress" format="float" />
+
+	<declare-styleable name="ProgressCircle">
+		<attr name="progress" />
+		<attr name="android:color" format="color" />
+		<attr name="strokeWidth" format="dimension" />
+		<attr name="backgroundAlpha" format="float" />
+	</declare-styleable>
+
+	<declare-styleable name="ProgressLine">
+		<attr name="progress" />
+		<attr name="android:color" format="color" />
+		<attr name="android:colorBackground" format="color" />
 	</declare-styleable>
 </resources>

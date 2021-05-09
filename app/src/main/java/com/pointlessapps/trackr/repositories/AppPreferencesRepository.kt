@@ -19,11 +19,7 @@ class AppPreferencesRepository(coroutineScope: CoroutineScope, private val conte
 	}
 
 	private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(
-		name = "${
-			context.getString(
-				R.string.app_name
-			).toLowerCase(Locale.getDefault())
-		}_prefs",
+		name = "${context.getString(R.string.app_name).lowercase(Locale.getDefault())}_prefs",
 		scope = coroutineScope
 	)
 

@@ -73,12 +73,12 @@ class ActivityAddActivity : AppCompatActivity() {
 			when (it) {
 				ViewModelAddActivity.ErrorType.BLANK_NAME -> {
 					binding.inputName.backgroundTintList =
-						ColorStateList.valueOf(getColor(R.color.red))
+						ColorStateList.valueOf(getColor(R.color.text_red))
 					binding.inputNameErrorLabel.isVisible = true
 				}
 				ViewModelAddActivity.ErrorType.ONE_TIME_WITH_TIME_BASED_SALARY -> {
 					binding.buttonSalary.strokeColor =
-						ColorStateList.valueOf(getColor(R.color.red))
+						ColorStateList.valueOf(getColor(R.color.text_red))
 					binding.buttonSalaryErrorLabel.isVisible = true
 				}
 			}

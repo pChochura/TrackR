@@ -36,7 +36,7 @@
 					android:layout_width="128dp"
 					android:layout_height="128dp"
 					android:layout_gravity="center_horizontal"
-					android:background="@drawable/background_rounded"
+					android:background="@drawable/background_rounded_16dp"
 					android:backgroundTint="@color/orange"
 					android:clickable="true"
 					android:focusable="true"
@@ -88,7 +88,7 @@
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
 					android:text="@string/cannot_be_empty"
-					android:textColor="@color/red"
+					android:textColor="@color/text_red"
 					android:textSize="12sp"
 					android:visibility="gone" />
 
@@ -171,7 +171,7 @@
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
 						android:text="@string/have_to_be_set_to_per_occurrence"
-						android:textColor="@color/red"
+						android:textColor="@color/text_red"
 						android:textSize="12sp"
 						android:visibility="gone" />
 

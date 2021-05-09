@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content"
+	android:background="@drawable/background_rounded_4dp_stroke_dashed"
+	android:backgroundTint="?android:textColorPrimary"
+	android:orientation="vertical"
+	android:padding="@dimen/default_padding"
+	app:divider="@drawable/divider_vertical_16dp"
+	app:showDividers="middle">
+
+	<androidx.appcompat.widget.AppCompatTextView
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="@string/total_earnings"
+		android:textColor="?android:textColorPrimary"
+		android:textSize="14sp"
+		app:fontFamily="@font/montserrat_bold"
+		app:layout_constraintLeft_toLeftOf="parent"
+		app:layout_constraintRight_toRightOf="parent"
+		app:layout_constraintTop_toTopOf="parent" />
+
+	<androidx.constraintlayout.widget.ConstraintLayout
+		android:id="@+id/container"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:visibility="gone"
+		tools:visibility="visible">
+
+		<androidx.appcompat.widget.AppCompatTextView
+			android:id="@+id/textIncome"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:textColor="?android:textColorPrimary"
+			android:textSize="18sp"
+			app:fontFamily="@font/montserrat_bold"
+			app:layout_constraintLeft_toLeftOf="parent"
+			app:layout_constraintTop_toTopOf="parent"
+			tools:text="@string/income_formatted" />
+
+		<androidx.appcompat.widget.AppCompatTextView
+			android:id="@+id/textComparisonPercent"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginHorizontal="5dp"
+			android:drawablePadding="4dp"
+			android:drawableTint="@color/text_red"
+			android:textColor="@color/text_red"
+			android:textSize="10sp"
+			app:drawableStartCompat="@drawable/ic_arrow_filled_down"
+			app:fontFamily="@font/montserrat_bold"
+			app:layout_constraintBaseline_toBaselineOf="@id/textIncome"
+			app:layout_constraintLeft_toRightOf="@id/textIncome"
+			tools:ignore="SmallSp"
+			tools:text="@string/percent" />
+
+		<androidx.appcompat.widget.AppCompatTextView
+			android:id="@+id/textComparison"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:textColor="?android:textColorSecondary"
+			android:textSize="12sp"
+			app:fontFamily="@font/montserrat"
+			app:layout_constraintLeft_toLeftOf="parent"
+			app:layout_constraintTop_toBottomOf="@id/textIncome"
+			tools:text="@string/compared_to_last_month" />
+
+	</androidx.constraintlayout.widget.ConstraintLayout>
+
+	<androidx.recyclerview.widget.RecyclerView
+		android:id="@+id/listItems"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:visibility="gone"
+		tools:itemCount="2"
+		tools:listitem="@layout/item_activity_income_percentage"
+		tools:visibility="visible" />
+
+</androidx.appcompat.widget.LinearLayoutCompat>

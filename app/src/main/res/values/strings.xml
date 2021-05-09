@@ -15,7 +15,7 @@
 	<string name="default_period">Default period</string>
 	<string name="default_time_range">Default time range</string>
 	<string name="cancel">Cancel</string>
-	<string name="salary_formatted">%.2f %s / %s</string>
+	<string name="salary_formatted">%1$.2f %2$s / %3$s</string>
 	<string name="salary">Salary</string>
 	<string name="unset">Unset</string>
 	<string name="time_based">Time based</string>
@@ -54,7 +54,7 @@
 	<string name="pln">PLN</string>
 	<string name="euro">Euro</string>
 	<string name="dollar">Dollar</string>
-	<string name="salary_unit">%s (%s)</string>
+	<string name="salary_unit">%1$s (%2$s)</string>
 	<string name="select_salary_unit">Select salary unit</string>
 	<string name="select_salary_type">Select salary type</string>
 	<string name="weekday_0_abbrev">Mon</string>
@@ -93,4 +93,10 @@
 	<string name="add_an_activity_first">You have to add an activity first.</string>
 	<string name="no_activities">No activities</string>
 	<string name="ok">OK</string>
+	<string name="most_frequent_activity">Most frequent activity</string>
+	<string name="times_hours_this_month"><![CDATA[<b>%1$d</b> times<br/><b>%2$02dh %3$02dm</b> this month]]></string>
+	<string name="times_this_month"><![CDATA[<b>%d</b> times this month]]></string>
+	<string name="total_earnings">Total earnings</string>
+	<string name="percent">%.0f%%</string>
+	<string name="compared_to_last_month">Compared to %1$.2f %2$s last month</string>
 </resources>

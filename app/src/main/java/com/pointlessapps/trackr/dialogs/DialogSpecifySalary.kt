@@ -29,7 +29,7 @@ class DialogSpecifySalary(
 			}
 
 			binding.inputAmount.addTextChangedListener {
-				updateSalaryAmount(it.toString().toFloatOrNull() ?: 0f)
+				updateSalaryAmount(it.toString().toDoubleOrNull() ?: 0.0)
 			}
 
 			binding.inputAmount.setText(salary.value!!.amount.toString())
@@ -51,7 +51,7 @@ class DialogSpecifySalary(
 		return this
 	}
 
-	private fun updateSalaryAmount(amount: Float) {
+	private fun updateSalaryAmount(amount: Double) {
 		salary.value = salary.value?.also {
 			it.amount = amount
 		}

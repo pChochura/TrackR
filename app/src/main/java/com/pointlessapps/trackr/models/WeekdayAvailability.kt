@@ -29,7 +29,7 @@ class WeekdayAvailability(
 					"string",
 					context.packageName
 				)
-				context.getString(id).toLowerCase(Locale.getDefault())
+				context.getString(id).lowercase(Locale.getDefault())
 			}.toTypedArray()
 
 		val ranges = mutableListOf<Pair<Int, Int>>()

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content">
+
+	<androidx.appcompat.widget.AppCompatImageView
+		android:id="@+id/imageIcon"
+		android:layout_width="32dp"
+		android:layout_height="32dp"
+		android:layout_gravity="center_horizontal"
+		android:background="@drawable/background_rounded_8dp"
+		android:backgroundTint="@color/yellow"
+		android:clickable="true"
+		android:focusable="true"
+		android:foreground="?selectableItemBackground"
+		android:padding="8dp"
+		android:scaleType="centerCrop"
+		android:src="@drawable/ic_home"
+		app:layout_constraintBottom_toBottomOf="parent"
+		app:layout_constraintLeft_toLeftOf="parent"
+		app:layout_constraintTop_toTopOf="parent"
+		app:tint="@color/dark_grey" />
+
+	<androidx.appcompat.widget.AppCompatTextView
+		android:id="@+id/textTitle"
+		android:layout_width="0dp"
+		android:layout_height="0dp"
+		android:layout_marginStart="10dp"
+		android:textColor="?android:textColorPrimary"
+		app:autoSizeMaxTextSize="20sp"
+		app:autoSizeMinTextSize="14sp"
+		android:gravity="bottom"
+		app:autoSizeTextType="uniform"
+		app:layout_constraintBottom_toTopOf="@id/progress"
+		app:layout_constraintEnd_toStartOf="@id/textPercentage"
+		app:layout_constraintHorizontal_chainStyle="spread_inside"
+		app:layout_constraintStart_toEndOf="@id/imageIcon"
+		app:layout_constraintTop_toTopOf="parent"
+		tools:text="Mobitouch" />
+
+	<androidx.appcompat.widget.AppCompatTextView
+		android:id="@+id/textPercentage"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:textColor="?android:textColorPrimary"
+		android:textSize="14sp"
+		app:layout_constraintBottom_toTopOf="@id/progress"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toEndOf="@id/textTitle"
+		tools:text="@string/percent" />
+
+	<com.pointlessapps.trackr.views.ProgressLine
+		android:id="@+id/progress"
+		android:layout_width="0dp"
+		android:layout_height="8dp"
+		android:layout_marginStart="10dp"
+		android:color="@color/yellow"
+		android:colorBackground="?colorSecondaryVariant"
+		app:layout_constraintBottom_toBottomOf="parent"
+		app:layout_constraintLeft_toRightOf="@id/imageIcon"
+		app:layout_constraintRight_toRightOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

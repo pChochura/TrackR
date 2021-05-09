@@ -14,6 +14,14 @@ sealed class ActivityType(
 	@StringRes private val descriptionResId: Int = 0
 ) : Parcelable {
 
+	companion object {
+		fun copy(activityType: ActivityType) = when (activityType) {
+			is OneTime -> OneTime()
+			is PeriodBased -> PeriodBased(activityType.period?.let { TimePeriod(it) })
+			is TimeBased -> TimeBased(activityType.range?.let { TimeRange(it) })
+		}
+	}
+
 	@Serializable
 	@Parcelize
 	@SerialName("OneTime")

@@ -13,5 +13,5 @@ class TimePeriod(var hours: Int = 0, var minutes: Int = 0) : Parcelable {
 
 	@Exclude
 	fun getCombined() =
-		hours + minutes.toFloat() / TimeUnit.HOURS.toMinutes(1)
+		hours + minutes.toDouble() / TimeUnit.HOURS.toMinutes(1)
 }

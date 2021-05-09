@@ -4,7 +4,6 @@ import android.animation.ValueAnimator
 import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.*
-import android.os.Build
 import android.text.TextPaint
 import android.util.AttributeSet
 import android.view.GestureDetector
@@ -15,14 +14,13 @@ import android.widget.OverScroller
 import androidx.annotation.ColorInt
 import androidx.core.animation.addListener
 import androidx.core.animation.doOnEnd
-import androidx.core.content.res.ResourcesCompat
 import androidx.core.content.withStyledAttributes
 import androidx.core.view.NestedScrollingChild
-import androidx.core.view.NestedScrollingChild3
 import androidx.core.view.ViewCompat
 import androidx.lifecycle.MutableLiveData
 import com.google.android.material.color.MaterialColors
 import com.pointlessapps.trackr.R
+import com.pointlessapps.trackr.utils.Utils.getFont
 import com.pointlessapps.trackr.utils.toDp
 import com.pointlessapps.trackr.utils.toSp
 import java.time.Instant
@@ -42,9 +40,9 @@ class CalendarView(context: Context, attrs: AttributeSet?, defStyleAttr: Int) :
 
 	var monthScrollListener: ((Calendar) -> Unit)? = null
 	var daySelectedListener: ((Calendar) -> Unit)? = null
-	val eventsLiveData = MutableLiveData<List<Event>>()
+	val eventsLiveData = MutableLiveData<Set<Event>>()
 
-	private val eventsByDay = mutableMapOf<Long, List<Event>>()
+	private val eventsByDay = mutableMapOf<Long, Set<Event>>()
 
 	private val scroller = OverScroller(context, DecelerateInterpolator(2f))
 	private val gestureDetector =
@@ -134,16 +132,12 @@ class CalendarView(context: Context, attrs: AttributeSet?, defStyleAttr: Int) :
 		).uppercase(Locale.getDefault())
 	}
 
-	private val eventsObserver: (List<Event>) -> Unit = { list ->
-		eventsByDay.apply {
-			clear()
-			putAll(
-				list.groupBy {
-					Instant.ofEpochMilli(it.dateInMillis).atZone(ZoneId.systemDefault())
-						.toLocalDate().toEpochDay()
-				}
-			)
-		}
+	private val eventsObserver: (Set<Event>) -> Unit = { list ->
+		val eventsToAdd = list.groupBy {
+			Instant.ofEpochMilli(it.dateInMillis).atZone(ZoneId.systemDefault())
+				.toLocalDate().toEpochDay()
+		}.mapValues { it.value.toSet() }
+		eventsByDay.putAll(eventsToAdd)
 		daySelectedListener?.invoke(selectedDay.clone() as Calendar)
 		invalidate()
 	}
@@ -175,13 +169,8 @@ class CalendarView(context: Context, attrs: AttributeSet?, defStyleAttr: Int) :
 				R.styleable.CalendarView_android_colorAccent,
 				MaterialColors.getColor(this@CalendarView, android.R.attr.colorAccent)
 			)
-			fontFamily = when {
-				Build.VERSION.SDK_INT >= Build.VERSION_CODES.O -> getFont(R.styleable.CalendarView_android_fontFamily)
-				else -> ResourcesCompat.getFont(
-					context,
-					getResourceId(R.styleable.CalendarView_android_fontFamily, R.font.montserrat)
-				)
-			}
+			fontFamily =
+				getFont(context, R.styleable.CalendarView_android_fontFamily, R.font.montserrat)
 		}
 
 		if (rowHeight == 0) {
@@ -288,7 +277,7 @@ class CalendarView(context: Context, attrs: AttributeSet?, defStyleAttr: Int) :
 
 	private fun onDrawEvents(
 		canvas: Canvas,
-		events: List<Event>?,
+		events: Set<Event>?,
 		currentMonth: Boolean,
 		x: Float,
 		y: Float
@@ -484,6 +473,7 @@ class CalendarView(context: Context, attrs: AttributeSet?, defStyleAttr: Int) :
 	}
 
 	data class Event(
+		val id: Int,
 		@ColorInt val color: Int,
 		val dateInMillis: Long
 	)

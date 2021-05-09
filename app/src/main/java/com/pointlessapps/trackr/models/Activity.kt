@@ -20,21 +20,14 @@ class Activity(
 	var type: ActivityType = ActivityType.OneTime(),
 	var weekdayAvailability: WeekdayAvailability = WeekdayAvailability()
 ) : Parcelable {
+
 	constructor(activity: Activity) : this(
 		activity.id,
 		activity.name,
 		activity.color,
 		activity.icon,
 		activity.salary?.let { Salary(it) },
-		when (activity.type) {
-			is ActivityType.OneTime -> ActivityType.OneTime()
-			is ActivityType.PeriodBased -> ActivityType.PeriodBased(
-				(activity.type as ActivityType.PeriodBased).period?.let { TimePeriod(it) }
-			)
-			is ActivityType.TimeBased -> ActivityType.TimeBased(
-				(activity.type as ActivityType.TimeBased).range?.let { TimeRange(it) }
-			)
-		},
+		ActivityType.copy(activity.type),
 		WeekdayAvailability(activity.weekdayAvailability)
 	)
 

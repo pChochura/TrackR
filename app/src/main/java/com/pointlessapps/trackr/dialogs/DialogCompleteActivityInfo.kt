@@ -98,12 +98,12 @@ class DialogCompleteActivityInfo(
 			when (it) {
 				ErrorType.EMPTY_PERIOD -> {
 					binding.buttonPeriod.strokeColor =
-						ColorStateList.valueOf(activity.getColor(R.color.red))
+						ColorStateList.valueOf(activity.getColor(R.color.text_red))
 					binding.buttonPeriodErrorLabel.isVisible = true
 				}
 				ErrorType.EMPTY_TIME_RANGE -> {
 					binding.buttonTimeRange.strokeColor =
-						ColorStateList.valueOf(activity.getColor(R.color.red))
+						ColorStateList.valueOf(activity.getColor(R.color.text_red))
 					binding.buttonTimeRangeErrorLabel.isVisible = true
 				}
 			}

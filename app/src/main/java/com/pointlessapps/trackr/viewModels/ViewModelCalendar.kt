@@ -37,7 +37,7 @@ class ViewModelCalendar(application: Application) : AndroidViewModel(application
 	}
 
 	val selectedEvents = Transformations.switchMap(selectedDay) {
-		val startOfDay = it.apply {
+		val startOfDay = (it.clone() as Calendar).apply {
 			set(Calendar.HOUR_OF_DAY, 0)
 			set(Calendar.MINUTE, 0)
 			set(Calendar.SECOND, 0)

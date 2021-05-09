@@ -15,11 +15,11 @@ class Repository {
 
 	fun getAllActivities(): Flow<List<Activity>> = flow {
 		emit(emptyList())
-		emitAll(ServiceFirebase.getAllActivities())
+		emitAll(ServiceFirebase.observeAllActivities())
 	}
 
 	fun getEventsBetween(startTime: Long, endTime: Long): Flow<List<Event>> = flow {
 		emit(emptyList())
-		emitAll(ServiceFirebase.getEventsBetween(startTime, endTime))
+		emitAll(ServiceFirebase.observeEventsBetween(startTime, endTime))
 	}
 }

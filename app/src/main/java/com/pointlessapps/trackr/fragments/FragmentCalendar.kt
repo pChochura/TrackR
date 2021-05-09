@@ -54,14 +54,17 @@ class FragmentCalendar : FragmentCore<FragmentCalendarBinding>(FragmentCalendarB
 		viewModel.events.observe(this) {
 			binding.calendar.eventsLiveData.value = it.map { event ->
 				CalendarView.Event(
+					event.id.hashCode(),
 					event.activity.color,
 					event.date.time
 				)
-			}
+			}.toSet()
 		}
 
 		binding.calendar.daySelectedListener = { day ->
-			viewModel.selectedDay.value = day
+			if (viewModel.selectedDay.value?.timeInMillis != day.timeInMillis) {
+				viewModel.selectedDay.value = day
+			}
 		}
 		binding.calendar.monthScrollListener = { month ->
 			viewModel.displayedMonth.value =
