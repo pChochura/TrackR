@@ -38,13 +38,13 @@ class ActivityMain : AppCompatActivity() {
 	private fun prepareNavigation(binding: ActivityMainBinding) {
 		val navController = findNavController(R.id.containerFragment)
 		binding.navigationBottom.setupWithNavController(navController)
-		binding.navigationBottom.setOnNavigationItemSelectedListener itemSelectedListener@{
-			if (it.itemId == R.id.home) {
-				return@itemSelectedListener navController.navigateUp()
-			}
-
-			return@itemSelectedListener NavigationUI.onNavDestinationSelected(it, navController)
-		}
+//		binding.navigationBottom.setOnNavigationItemSelectedListener itemSelectedListener@{
+//			if (it.itemId == R.id.home) {
+//				return@itemSelectedListener navController.navigateUp()
+//			}
+//
+//			return@itemSelectedListener NavigationUI.onNavDestinationSelected(it, navController)
+//		}
 	}
 
 	private fun prepareButtons(binding: ActivityMainBinding) {

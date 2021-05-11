@@ -1,17 +1,19 @@
 package com.pointlessapps.trackr.models
 
+import android.content.Context
 import android.os.Parcelable
 import androidx.annotation.ColorInt
 import androidx.annotation.DrawableRes
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FieldPath
+import com.pointlessapps.trackr.utils.ResourcesUtils
 import kotlinx.parcelize.Parcelize
 import kotlinx.serialization.Serializable
 import java.util.*
 
 @Serializable
 @Parcelize
-class Activity(
+data class Activity(
 	val id: String = UUID.randomUUID().toString(),
 	var name: String = "",
 	@ColorInt var color: Int = 0,
@@ -31,11 +33,11 @@ class Activity(
 		WeekdayAvailability(activity.weekdayAvailability)
 	)
 
-	fun toMap() = mapOf(
+	fun toMap(context: Context) = mapOf(
 		"id" to id,
 		"name" to name,
 		"color" to color,
-		"icon" to icon,
+		"icon" to context.resources.getResourceEntryName(icon),
 		"type" to mapOf(
 			"className" to type.javaClass.simpleName,
 			"period" to (type as? ActivityType.PeriodBased)?.period,
@@ -46,7 +48,11 @@ class Activity(
 	)
 
 	companion object {
-		fun fromDocument(document: DocumentSnapshot, prefix: String? = null): Activity {
+		fun fromDocument(
+			context: Context,
+			document: DocumentSnapshot,
+			prefix: String? = null
+		): Activity {
 			fun fieldOf(vararg field: String) =
 				prefix?.let { FieldPath.of(prefix, *field) } ?: FieldPath.of(*field)
 
@@ -55,7 +61,9 @@ class Activity(
 					?: UUID.randomUUID().toString(),
 				name = document[fieldOf("name"), String::class.java] ?: "",
 				color = document[fieldOf("color"), Int::class.java] ?: 0,
-				icon = document[fieldOf("icon"), Int::class.java] ?: 0,
+				icon = context.resources.getIdentifier(
+					document[fieldOf("icon"), String::class.java], "drawable", context.packageName
+				),
 				salary = document[fieldOf("salary"), Salary::class.java],
 				type = when (document[fieldOf("type", "className")]) {
 					"PeriodBased" -> ActivityType.PeriodBased(

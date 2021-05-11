@@ -7,7 +7,6 @@ import android.util.TypedValue
 import com.pointlessapps.trackr.models.Event
 import com.pointlessapps.trackr.services.ServiceActivityCalculator
 import java.util.*
-import kotlin.collections.ArrayList
 
 fun Int.toDp() = this.toFloat().toDp().toInt()
 
@@ -53,3 +52,5 @@ fun Calendar.setToEndMonth(monthOffset: Int = 0): Calendar {
 
 	return this
 }
+
+inline fun <reified T : Number> T.ifZero(number: T): T = if (this.toDouble() == 0.0) number else this

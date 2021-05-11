@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content"
+	android:background="@drawable/background_rounded_4dp_stroke_dashed"
+	android:backgroundTint="?android:textColorPrimary"
+	android:orientation="vertical"
+	android:padding="@dimen/default_padding"
+	app:divider="@drawable/divider_vertical_16dp"
+	app:showDividers="middle">
+
+	<androidx.appcompat.widget.LinearLayoutCompat
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:orientation="vertical">
+
+		<androidx.appcompat.widget.AppCompatTextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="@string/time_spent_this_month"
+			android:textColor="?android:textColorPrimary"
+			android:textSize="14sp"
+			app:fontFamily="@font/montserrat_bold"
+			app:layout_constraintLeft_toLeftOf="parent"
+			app:layout_constraintRight_toRightOf="parent"
+			app:layout_constraintTop_toTopOf="parent" />
+
+		<androidx.appcompat.widget.AppCompatTextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="@string/comparison_is_based_on_the_previous_month"
+			android:textColor="?android:textColorSecondary"
+			android:textSize="12sp"
+			app:fontFamily="@font/montserrat"
+			app:layout_constraintLeft_toLeftOf="parent"
+			app:layout_constraintRight_toRightOf="parent"
+			app:layout_constraintTop_toTopOf="parent" />
+
+	</androidx.appcompat.widget.LinearLayoutCompat>
+
+	<androidx.recyclerview.widget.RecyclerView
+		android:id="@+id/listItems"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		tools:itemCount="2"
+		tools:listitem="@layout/item_activity_time_spent_comparison" />
+
+</androidx.appcompat.widget.LinearLayoutCompat>

@@ -30,28 +30,24 @@
 			android:id="@+id/progress"
 			android:layout_width="64dp"
 			android:layout_height="64dp"
-			android:alpha="0"
 			android:color="@color/yellow"
 			app:backgroundAlpha="0.25"
 			app:layout_constraintBottom_toBottomOf="parent"
 			app:layout_constraintStart_toStartOf="parent"
 			app:layout_constraintTop_toTopOf="parent"
-			app:strokeWidth="4dp"
-			tools:alpha="1" />
+			app:strokeWidth="4dp" />
 
 		<androidx.appcompat.widget.AppCompatImageView
 			android:id="@+id/imageIcon"
 			android:layout_width="0dp"
 			android:layout_height="0dp"
-			android:alpha="0"
 			android:padding="@dimen/default_padding"
 			app:layout_constraintBottom_toBottomOf="@id/progress"
 			app:layout_constraintLeft_toLeftOf="@id/progress"
 			app:layout_constraintRight_toRightOf="@id/progress"
 			app:layout_constraintTop_toTopOf="@id/progress"
 			app:srcCompat="@drawable/ic_calendar"
-			app:tint="@color/yellow"
-			tools:alpha="1" />
+			app:tint="@color/yellow" />
 
 		<androidx.appcompat.widget.AppCompatTextView
 			android:id="@+id/textTitle"
@@ -72,12 +68,12 @@
 			android:layout_height="wrap_content"
 			android:layout_marginHorizontal="10dp"
 			android:textColor="?android:textColorSecondary"
-			android:textSize="12sp"
+			android:textSize="14sp"
 			app:fontFamily="@font/montserrat"
 			app:layout_constraintLeft_toRightOf="@id/progress"
 			app:layout_constraintRight_toRightOf="parent"
 			app:layout_constraintTop_toBottomOf="@id/textTitle"
-			tools:text="@string/times_hours_this_month" />
+			tools:text="120h 00m\n3 times" />
 
 	</androidx.constraintlayout.widget.ConstraintLayout>
 

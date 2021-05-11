@@ -1,12 +1,14 @@
 package com.pointlessapps.trackr.services
 
 import android.content.Context
+import android.text.Spanned
 import androidx.core.text.parseAsHtml
 import com.pointlessapps.trackr.R
 import com.pointlessapps.trackr.models.*
 import com.pointlessapps.trackr.utils.setToBeginMonth
 import java.util.*
 import java.util.concurrent.TimeUnit
+import kotlin.math.ceil
 
 object ServiceActivityCalculator {
 
@@ -54,21 +56,21 @@ object ServiceActivityCalculator {
 
 		return when (salary.type) {
 			Salary.Type.PER_HOUR -> time * salary.amount
-			Salary.Type.PER_MONTH -> time / availableDaysInMonth * salary.amount
+			Salary.Type.PER_MONTH -> ceil(time / TimeUnit.DAYS.toHours(1)) / availableDaysInMonth * salary.amount
 			Salary.Type.PER_OCCURRENCE -> salary.amount
 		}
 	}
 
-	fun getSummary(context: Context, activity: Activity, events: List<Event>) =
+	fun getTimeSummary(activity: Activity, events: List<Event>) =
 		when (activity.type) {
-			is ActivityType.OneTime -> context.getString(R.string.times_this_month, events.size)
+			is ActivityType.OneTime -> TimePeriod()
 			is ActivityType.PeriodBased -> {
 				val sum = events.sumOf { event ->
 					(event.activity.type as ActivityType.PeriodBased).period?.getCombined() ?: 0.0
 				}
 				val hours = sum.toInt()
 				val minutes = ((sum - hours) * TimeUnit.HOURS.toMinutes(1)).toInt()
-				context.getString(R.string.times_hours_this_month, events.size, hours, minutes)
+				TimePeriod(hours, minutes)
 			}
 			is ActivityType.TimeBased -> {
 				val sum = events.sumOf { event ->
@@ -76,9 +78,38 @@ object ServiceActivityCalculator {
 				}
 				val hours = sum.toInt()
 				val minutes = ((sum - hours) * TimeUnit.HOURS.toMinutes(1)).toInt()
-				context.getString(R.string.times_hours_this_month, events.size, hours, minutes)
+				TimePeriod(hours, minutes)
+			}
+		}
+
+	fun getSummary(context: Context, activity: Activity, events: List<Event>): Spanned {
+		val timePeriod = getTimeSummary(activity, events)
+		return when (activity.type) {
+			is ActivityType.OneTime -> context.resources.getQuantityString(
+				R.plurals.times_this_month,
+				events.size,
+				events.size
+			)
+			is ActivityType.PeriodBased -> {
+				context.resources.getQuantityString(
+					R.plurals.hours_times_this_month,
+					events.size,
+					timePeriod.hours,
+					timePeriod.minutes,
+					events.size
+				)
+			}
+			is ActivityType.TimeBased -> {
+				context.resources.getQuantityString(
+					R.plurals.hours_times_this_month,
+					events.size,
+					timePeriod.hours,
+					timePeriod.minutes,
+					events.size
+				)
 			}
 		}.parseAsHtml()
+	}
 
 	fun getPercentageThisMonth(activity: Activity, events: List<Event>): Float {
 		var availableDaysInMonth = 0f

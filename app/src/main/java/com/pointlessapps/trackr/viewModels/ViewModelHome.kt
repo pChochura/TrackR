@@ -14,7 +14,7 @@ import kotlinx.coroutines.launch
 
 class ViewModelHome(application: Application) : AndroidViewModel(application) {
 
-	private val repository = Repository()
+	private val repository = Repository(application)
 	private val prefs = (application as App).appPreferencesRepository
 	private val _isLoading = MutableLiveData(true)
 	val isLoading: LiveData<Boolean>

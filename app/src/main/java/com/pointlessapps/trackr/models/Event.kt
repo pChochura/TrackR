@@ -1,5 +1,6 @@
 package com.pointlessapps.trackr.models
 
+import android.content.Context
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FieldPath
 import java.util.*
@@ -10,29 +11,17 @@ data class Event(
 	var activity: Activity,
 ) {
 
-	fun toMap() = mapOf(
+	fun toMap(context: Context) = mapOf(
 		"id" to id,
 		"date" to date.time,
-		"activity" to mapOf(
-			"id" to activity.id,
-			"name" to activity.name,
-			"color" to activity.color,
-			"icon" to activity.icon,
-			"type" to mapOf(
-				"className" to activity.type.javaClass.simpleName,
-				"period" to (activity.type as? ActivityType.PeriodBased)?.period,
-				"range" to (activity.type as? ActivityType.TimeBased)?.range
-			),
-			"salary" to activity.salary,
-			"weekdayAvailability" to activity.weekdayAvailability.getAll().toList(),
-		)
+		"activity" to activity.toMap(context)
 	)
 
 	companion object {
-		fun fromDocument(document: DocumentSnapshot) = Event(
+		fun fromDocument(context: Context, document: DocumentSnapshot) = Event(
 			id = document["id", String::class.java] ?: UUID.randomUUID().toString(),
 			date = Date(document["date", Long::class.java] ?: 0),
-			activity = Activity.fromDocument(document, "activity")
+			activity = Activity.fromDocument(context, document, "activity")
 		)
 	}
 }

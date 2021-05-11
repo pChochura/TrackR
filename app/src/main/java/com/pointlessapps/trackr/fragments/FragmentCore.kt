@@ -21,8 +21,11 @@ abstract class FragmentCore<Binding : ViewBinding>(private val inflateMethod: In
 		container: ViewGroup?,
 		savedInstanceState: Bundle?
 	): View? {
-		binding = inflateMethod(inflater, container, false)
-		created()
+		if (!::binding.isInitialized) {
+			binding = inflateMethod(inflater, container, false)
+			created()
+		}
+
 		return binding.root
 	}
 
