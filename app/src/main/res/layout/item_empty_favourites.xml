@@ -25,7 +25,6 @@
 		app:layout_constraintTop_toTopOf="parent"
 		app:showDividers="middle">
 
-
 		<androidx.appcompat.widget.AppCompatImageView
 			android:layout_width="48dp"
 			android:layout_height="48dp"
@@ -55,18 +54,6 @@
 			app:layout_constraintLeft_toLeftOf="parent"
 			app:layout_constraintRight_toRightOf="parent"
 			app:layout_constraintTop_toTopOf="parent" />
-
-		<com.google.android.material.button.MaterialButton
-			android:id="@+id/buttonHideSection"
-			style="@style/MaterialButton"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:paddingVertical="5dp"
-			android:text="@string/or_hide_section"
-			android:textColor="?android:textColorSecondary"
-			android:textSize="12sp"
-			app:strokeColor="?android:textColorSecondary"
-			app:strokeWidth="1dp" />
 
 	</androidx.appcompat.widget.LinearLayoutCompat>
 

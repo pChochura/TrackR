@@ -24,6 +24,10 @@ class ViewModelAddActivity(application: Application) : AndroidViewModel(applicat
 	val activity: LiveData<Activity>
 		get() = _activity
 
+	fun setActivity(activity: Activity) {
+		_activity.postValue(activity.copy())
+	}
+
 	fun updateColorAndIcon(color: Int, icon: Int) {
 		_activity.value = _activity.value?.also {
 			it.color = color

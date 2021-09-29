@@ -28,6 +28,11 @@ class ActivityAddActivity : AppCompatActivity() {
 		setContentView(binding.root)
 		setResult(RESULT_CANCELED)
 
+		intent.getParcelableExtra<Activity?>(KEY_DATA)?.also { activity ->
+			viewModel.setActivity(activity)
+			binding.inputName.setText(activity.name)
+		}
+
 		viewModel.activity.observe(this) {
 			prepareImageIcon(binding, it)
 			prepareWeekdayAvailabilityComponent(binding, it)

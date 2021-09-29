@@ -33,7 +33,6 @@ class AdapterAllActivities(list: LiveData<List<Activity>>) :
 		ADDER, SIMPLE
 	}
 
-	var onMoreClickListener: ((Activity) -> Unit)? = null
 	var onAddClickListener: (() -> Unit)? = null
 
 	override fun getItemCount() = (items.value?.size ?: 0) + 1
@@ -61,7 +60,6 @@ class AdapterAllActivities(list: LiveData<List<Activity>>) :
 
 	private fun onBindSimple(binding: ItemActivityCardRectangleBinding, item: Activity) {
 		binding.containerClickable.setOnClickListener { onClickListener?.invoke(item) }
-		binding.buttonMore.setOnClickListener { onMoreClickListener?.invoke(item) }
 
 		binding.root.clipToOutline = true
 		binding.textTitle.text = item.name
@@ -77,14 +75,12 @@ class AdapterAllActivities(list: LiveData<List<Activity>>) :
 					binding.textTitle.setTextColor(this)
 					binding.textSubtitle.setTextColor(this)
 					binding.imageIcon.setColorFilter(this)
-					binding.buttonMore.setColorFilter(this)
 				}
 				false -> {
 					binding.root.backgroundTintList = ColorStateList.valueOf(this)
 					binding.textTitle.setTextColor(textColor)
 					binding.textSubtitle.setTextColor(textColor)
 					binding.imageIcon.setColorFilter(textColor)
-					binding.buttonMore.setColorFilter(textColor)
 				}
 			}
 		}

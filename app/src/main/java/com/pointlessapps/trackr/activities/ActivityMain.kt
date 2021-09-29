@@ -54,5 +54,9 @@ class ActivityMain : AppCompatActivity() {
 					intentLauncher.launch(viewModel.getSignInIntent())
 				}.setOnLogoutClickListener(viewModel::signOut)
 		}
+
+		binding.buttonMenu.setOnClickListener {
+			findNavController(R.id.containerFragment).navigate(R.id.activities)
+		}
 	}
 }

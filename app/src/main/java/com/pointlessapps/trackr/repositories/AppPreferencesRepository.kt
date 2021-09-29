@@ -13,7 +13,6 @@ import java.util.*
 class AppPreferencesRepository(coroutineScope: CoroutineScope, private val context: Context) {
 
 	companion object {
-		const val KEY_FAVOURITES_SECTION_HIDDEN = "favourites_section_hidden"
 		const val KEY_FAVOURITES_IDS_COUNT = "favourites_ids_count"
 		const val KEY_FAVOURITES_ID_ = "favourites_id_"
 	}
@@ -22,14 +21,6 @@ class AppPreferencesRepository(coroutineScope: CoroutineScope, private val conte
 		name = "${context.getString(R.string.app_name).lowercase(Locale.getDefault())}_prefs",
 		scope = coroutineScope
 	)
-
-	fun isFavouriteSectionHidden(defaultValue: Boolean = false) = context.dataStore.data.map {
-		it[booleanPreferencesKey(KEY_FAVOURITES_SECTION_HIDDEN)] ?: defaultValue
-	}
-
-	suspend fun setFavouriteSectionHidden(hidden: Boolean) {
-		context.dataStore.edit { it[booleanPreferencesKey(KEY_FAVOURITES_SECTION_HIDDEN)] = hidden }
-	}
 
 	suspend fun getFavouritesIds(): List<String> = context.dataStore.data.map { prefs ->
 		val count = prefs[intPreferencesKey(KEY_FAVOURITES_IDS_COUNT)] ?: 0

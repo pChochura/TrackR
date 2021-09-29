@@ -6,7 +6,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.viewbinding.ViewBinding
 import com.google.android.material.color.MaterialColors
 import com.pointlessapps.trackr.R
-import com.pointlessapps.trackr.databinding.ItemActivityCardRectangleBinding
 import com.pointlessapps.trackr.databinding.ItemActivityCardSquareBinding
 import com.pointlessapps.trackr.databinding.ItemEmptyFavouritesBinding
 import com.pointlessapps.trackr.models.Activity
@@ -35,7 +34,6 @@ class AdapterFavourites(list: LiveData<List<Activity>>) :
 	}
 
 	var onMoreClickListener: ((Activity) -> Unit)? = null
-	var onHideSectionClickListener: (() -> Unit)? = null
 	var onEditFavouritesClickListener: (() -> Unit)? = null
 
 	override fun getItemCount() = items.value?.size?.coerceAtLeast(1) ?: 1
@@ -52,7 +50,6 @@ class AdapterFavourites(list: LiveData<List<Activity>>) :
 
 	private fun onBindEmpty(binding: ItemEmptyFavouritesBinding) {
 		binding.root.clipToOutline = true
-		binding.buttonHideSection.setOnClickListener { onHideSectionClickListener?.invoke() }
 		binding.containerClickable.setOnClickListener { onEditFavouritesClickListener?.invoke() }
 	}
 

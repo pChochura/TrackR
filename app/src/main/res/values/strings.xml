@@ -82,8 +82,6 @@
 	<string name="you_have_no_favourites">You have no favourites!</string>
 	<string name="tap_here_to_add_one">Tap here to add one</string>
 	<string name="or_hide_section">Or hide section</string>
-	<string name="are_you_sure">Are you sure?</string>
-	<string name="hide_favourites_section_description">Do you really want to hide this section? You always can show it again from the settings.</string>
 	<string name="drag_and_drop_to_rearrange">Drag and drop to rearrange</string>
 	<string name="log_out">Log out</string>
 	<string name="log_in_with_google">Log in with Google</string>

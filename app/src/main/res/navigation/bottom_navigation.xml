@@ -24,4 +24,10 @@
 		android:label="@string/calendar"
 		tools:layout="@layout/fragment_calendar" />
 
+	<fragment
+		android:id="@+id/activities"
+		android:name="com.pointlessapps.trackr.fragments.FragmentActivities"
+		android:label="@string/all_activities"
+		tools:layout="@layout/fragment_activities" />
+
 </navigation>
